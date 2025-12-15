@@ -13,13 +13,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./seeds:/seeds:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  backend:
+  api:
     build: .
     container_name: backend_app
     ports:
@@ -27,10 +28,13 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    env_file:
-      - .env
-    volumes:
-      - .:/code
+    environment:
+      HTTP_ADDR: ":8000"
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: cyber_tournament
 
 volumes:
   postgres_data:

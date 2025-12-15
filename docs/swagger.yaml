@@ -1,0 +1,2275 @@
+basePath: /api
+definitions:
+  api.disciplineRequest:
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+    required:
+    - code
+    - name
+    type: object
+  api.gamePlayerStatRequest:
+    properties:
+      assists:
+        type: integer
+      damage_dealt:
+        type: integer
+      deaths:
+        type: integer
+      game_id:
+        type: integer
+      gold_earned:
+        type: integer
+      hero_name:
+        type: string
+      kills:
+        type: integer
+      player_id:
+        type: integer
+      team_id:
+        type: integer
+      was_mvp:
+        type: boolean
+    required:
+    - game_id
+    - player_id
+    type: object
+  api.matchGameRequest:
+    properties:
+      duration_seconds:
+        type: integer
+      game_number:
+        type: integer
+      had_technical_pause:
+        type: boolean
+      map_name:
+        type: string
+      match_id:
+        type: integer
+      pick_ban_phase:
+        type: object
+      score_team1:
+        type: integer
+      score_team2:
+        type: integer
+      started_at:
+        type: string
+      winner_team_id:
+        type: integer
+    required:
+    - game_number
+    - map_name
+    - match_id
+    type: object
+  api.matchRequest:
+    properties:
+      format:
+        type: string
+      is_forfeit:
+        type: boolean
+      match_notes:
+        type: object
+      stage:
+        type: string
+      start_time:
+        type: string
+      team1_id:
+        type: integer
+      team2_id:
+        type: integer
+      tournament_id:
+        type: integer
+      winner_team_id:
+        type: integer
+    required:
+    - start_time
+    - tournament_id
+    type: object
+  api.playerRequest:
+    properties:
+      avatar_url:
+        type: string
+      birth_date:
+        type: string
+      country_code:
+        type: string
+      is_retired:
+        type: boolean
+      mmr_rating:
+        type: number
+      nickname:
+        type: string
+      real_name:
+        type: string
+      steam_id:
+        type: string
+    required:
+    - nickname
+    type: object
+  api.squadMemberRequest:
+    properties:
+      contract_end_date:
+        type: string
+      is_standin:
+        type: boolean
+      join_date:
+        type: string
+      leave_date:
+        type: string
+      player_id:
+        type: integer
+      role:
+        type: string
+      salary_monthly:
+        type: number
+      team_id:
+        type: integer
+    required:
+    - player_id
+    - team_id
+    type: object
+  api.teamProfileRequest:
+    properties:
+      coach_name:
+        type: string
+      contact_email:
+        type: string
+      headquarters:
+        type: string
+      sponsor_info:
+        type: string
+      team_id:
+        type: integer
+      website:
+        type: string
+    required:
+    - team_id
+    type: object
+  api.teamRequest:
+    properties:
+      country_code:
+        type: string
+      discipline_id:
+        type: integer
+      is_verified:
+        type: boolean
+      logo_url:
+        type: string
+      name:
+        type: string
+      tag:
+        type: string
+      world_ranking:
+        type: number
+    required:
+    - country_code
+    - discipline_id
+    - name
+    - tag
+    type: object
+  api.tournamentRegistrationRequest:
+    properties:
+      is_invited:
+        type: boolean
+      manager_contact:
+        type: string
+      roster_snapshot:
+        type: object
+      seed_number:
+        type: integer
+      status:
+        type: string
+      team_id:
+        type: integer
+      tournament_id:
+        type: integer
+    required:
+    - team_id
+    - tournament_id
+    type: object
+  api.tournamentRequest:
+    properties:
+      bracket_config:
+        type: string
+      currency:
+        type: string
+      discipline_id:
+        type: integer
+      end_date:
+        type: string
+      is_online:
+        type: boolean
+      name:
+        type: string
+      prize_pool:
+        type: number
+      start_date:
+        type: string
+      status:
+        type: string
+    required:
+    - discipline_id
+    - end_date
+    - name
+    - start_date
+    type: object
+  models.Discipline:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      is_active:
+        type: boolean
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.GamePlayerStat:
+    properties:
+      assists:
+        type: integer
+      damage_dealt:
+        type: integer
+      deaths:
+        type: integer
+      game_id:
+        type: integer
+      gold_earned:
+        type: integer
+      hero_name:
+        type: string
+      id:
+        type: integer
+      kda_ratio:
+        type: number
+      kills:
+        type: integer
+      player_id:
+        type: integer
+      team_id:
+        type: integer
+      was_mvp:
+        type: boolean
+    type: object
+  models.Match:
+    properties:
+      format:
+        type: string
+      id:
+        type: integer
+      is_forfeit:
+        type: boolean
+      match_notes:
+        type: object
+      stage:
+        type: string
+      start_time:
+        type: string
+      team1_id:
+        type: integer
+      team2_id:
+        type: integer
+      tournament_id:
+        type: integer
+      winner_team_id:
+        type: integer
+    type: object
+  models.MatchGame:
+    properties:
+      duration_seconds:
+        type: integer
+      game_number:
+        type: integer
+      had_technical_pause:
+        type: boolean
+      id:
+        type: integer
+      map_name:
+        type: string
+      match_id:
+        type: integer
+      pick_ban_phase:
+        type: object
+      score_team1:
+        type: integer
+      score_team2:
+        type: integer
+      started_at:
+        type: string
+      winner_team_id:
+        type: integer
+    type: object
+  models.Player:
+    properties:
+      avatar_url:
+        type: string
+      birth_date:
+        type: string
+      country_code:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      is_retired:
+        type: boolean
+      mmr_rating:
+        type: number
+      nickname:
+        type: string
+      real_name:
+        type: string
+      steam_id:
+        type: string
+    type: object
+  models.SquadMember:
+    properties:
+      contract_end_date:
+        type: string
+      id:
+        type: integer
+      is_standin:
+        type: boolean
+      join_date:
+        type: string
+      leave_date:
+        type: string
+      player_id:
+        type: integer
+      role:
+        type: string
+      salary_monthly:
+        type: number
+      team_id:
+        type: integer
+    type: object
+  models.Team:
+    properties:
+      country_code:
+        type: string
+      created_at:
+        type: string
+      discipline_id:
+        type: integer
+      id:
+        type: integer
+      is_verified:
+        type: boolean
+      logo_url:
+        type: string
+      name:
+        type: string
+      tag:
+        type: string
+      world_ranking:
+        type: number
+    type: object
+  models.TeamProfile:
+    properties:
+      coach_name:
+        type: string
+      contact_email:
+        type: string
+      headquarters:
+        type: string
+      sponsor_info:
+        type: string
+      team_id:
+        type: integer
+      website:
+        type: string
+    type: object
+  models.Tournament:
+    properties:
+      bracket_config:
+        type: string
+      currency:
+        type: string
+      discipline_id:
+        type: integer
+      end_date:
+        type: string
+      id:
+        type: integer
+      is_online:
+        type: boolean
+      name:
+        type: string
+      prize_pool:
+        type: number
+      start_date:
+        type: string
+      status:
+        type: string
+    type: object
+  models.TournamentRegistration:
+    properties:
+      id:
+        type: integer
+      is_invited:
+        type: boolean
+      manager_contact:
+        type: string
+      registered_at:
+        type: string
+      roster_snapshot:
+        type: object
+      seed_number:
+        type: integer
+      status:
+        type: string
+      team_id:
+        type: integer
+      tournament_id:
+        type: integer
+    type: object
+  service.PlayerImportInput:
+    properties:
+      avatar_url:
+        type: string
+      birth_date:
+        type: string
+      country_code:
+        type: string
+      is_retired:
+        type: boolean
+      mmr_rating:
+        type: number
+      nickname:
+        type: string
+      real_name:
+        type: string
+      steam_id:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: REST API for disciplines, teams, tournaments, matches, and reports.
+  title: DB Course Project API
+  version: "1.0"
+paths:
+  /batch-import:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Players to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.PlayerImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import players
+      tags:
+      - Utility
+  /disciplines:
+    get:
+      parameters:
+      - description: Search by name or code
+        in: query
+        name: search
+        type: string
+      - description: Filter by active flag
+        in: query
+        name: is_active
+        type: boolean
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List disciplines
+      tags:
+      - Disciplines
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Discipline payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.disciplineRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Discipline'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create discipline
+      tags:
+      - Disciplines
+  /disciplines/{id}:
+    delete:
+      parameters:
+      - description: Discipline ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete discipline
+      tags:
+      - Disciplines
+    get:
+      parameters:
+      - description: Discipline ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Discipline'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get discipline
+      tags:
+      - Disciplines
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Discipline ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Discipline payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.disciplineRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Discipline'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update discipline
+      tags:
+      - Disciplines
+  /game-player-stats:
+    get:
+      parameters:
+      - description: Game ID
+        in: query
+        name: game_id
+        type: integer
+      - description: Player ID
+        in: query
+        name: player_id
+        type: integer
+      - description: Team ID
+        in: query
+        name: team_id
+        type: integer
+      - description: Filter by MVP
+        in: query
+        name: was_mvp
+        type: boolean
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List game player stats
+      tags:
+      - GamePlayerStats
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Game player stats payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.gamePlayerStatRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.GamePlayerStat'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create game player stats
+      tags:
+      - GamePlayerStats
+  /game-player-stats/{id}:
+    delete:
+      parameters:
+      - description: Stat ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete game player stats
+      tags:
+      - GamePlayerStats
+    get:
+      parameters:
+      - description: Stat ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GamePlayerStat'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get game player stats
+      tags:
+      - GamePlayerStats
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Stat ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Game player stats payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.gamePlayerStatRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GamePlayerStat'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update game player stats
+      tags:
+      - GamePlayerStats
+  /match-games:
+    get:
+      parameters:
+      - description: Match ID
+        in: query
+        name: match_id
+        type: integer
+      - description: Winner team ID
+        in: query
+        name: winner_team_id
+        type: integer
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List match games
+      tags:
+      - MatchGames
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Match game payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.matchGameRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.MatchGame'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create match game
+      tags:
+      - MatchGames
+  /match-games/{id}:
+    delete:
+      parameters:
+      - description: Match game ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete match game
+      tags:
+      - MatchGames
+    get:
+      parameters:
+      - description: Match game ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.MatchGame'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get match game
+      tags:
+      - MatchGames
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Match game ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Match game payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.matchGameRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.MatchGame'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update match game
+      tags:
+      - MatchGames
+  /matches:
+    get:
+      parameters:
+      - description: Tournament ID
+        in: query
+        name: tournament_id
+        type: integer
+      - description: Team ID
+        in: query
+        name: team_id
+        type: integer
+      - description: Stage
+        in: query
+        name: stage
+        type: string
+      - description: Format
+        in: query
+        name: format
+        type: string
+      - description: From datetime (RFC3339)
+        in: query
+        name: from
+        type: string
+      - description: To datetime (RFC3339)
+        in: query
+        name: to
+        type: string
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List matches
+      tags:
+      - Matches
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Match payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.matchRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Match'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create match
+      tags:
+      - Matches
+  /matches/{id}:
+    delete:
+      parameters:
+      - description: Match ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete match
+      tags:
+      - Matches
+    get:
+      parameters:
+      - description: Match ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Match'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get match
+      tags:
+      - Matches
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Match ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Match payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.matchRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Match'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update match
+      tags:
+      - Matches
+  /players:
+    get:
+      parameters:
+      - description: Search by nickname
+        in: query
+        name: search
+        type: string
+      - description: Country code
+        in: query
+        name: country_code
+        type: string
+      - description: Retired flag
+        in: query
+        name: is_retired
+        type: boolean
+      - description: Min MMR
+        in: query
+        name: min_mmr
+        type: number
+      - description: Max MMR
+        in: query
+        name: max_mmr
+        type: number
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List players
+      tags:
+      - Players
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Player payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.playerRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Player'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create player
+      tags:
+      - Players
+  /players/{id}:
+    delete:
+      parameters:
+      - description: Player ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete player
+      tags:
+      - Players
+    get:
+      parameters:
+      - description: Player ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Player'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get player
+      tags:
+      - Players
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Player ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Player payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.playerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Player'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update player
+      tags:
+      - Players
+  /reports/active-rosters:
+    get:
+      parameters:
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Active roster report
+      tags:
+      - Utility
+  /reports/match-results:
+    get:
+      parameters:
+      - description: Tournament ID
+        in: query
+        name: tournament_id
+        type: integer
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Match results report
+      tags:
+      - Utility
+  /reports/player-career:
+    get:
+      parameters:
+      - description: Search by nickname
+        in: query
+        name: search
+        type: string
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Player career report
+      tags:
+      - Utility
+  /reports/player-kda:
+    get:
+      parameters:
+      - description: Player ID
+        in: query
+        name: player_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Player KDA report
+      tags:
+      - Utility
+  /reports/tournament-standings:
+    get:
+      parameters:
+      - description: Tournament ID
+        in: query
+        name: tournament_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Tournament standings report
+      tags:
+      - Utility
+  /squad-members:
+    get:
+      parameters:
+      - description: Team ID
+        in: query
+        name: team_id
+        type: integer
+      - description: Player ID
+        in: query
+        name: player_id
+        type: integer
+      - description: Only active
+        in: query
+        name: active_only
+        type: boolean
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List squad members
+      tags:
+      - SquadMembers
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Squad member payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.squadMemberRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.SquadMember'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Add player to squad
+      tags:
+      - SquadMembers
+  /squad-members/{id}:
+    delete:
+      parameters:
+      - description: Squad member ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remove squad member
+      tags:
+      - SquadMembers
+    get:
+      parameters:
+      - description: Squad member ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SquadMember'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get squad member
+      tags:
+      - SquadMembers
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Squad member ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Squad member payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.squadMemberRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SquadMember'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update squad member
+      tags:
+      - SquadMembers
+  /team-profiles:
+    get:
+      parameters:
+      - description: Team ID
+        in: query
+        name: team_id
+        type: integer
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List team profiles
+      tags:
+      - TeamProfiles
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Team profile payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.teamProfileRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.TeamProfile'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create team profile
+      tags:
+      - TeamProfiles
+  /team-profiles/{team_id}:
+    delete:
+      parameters:
+      - description: Team ID
+        in: path
+        name: team_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete team profile
+      tags:
+      - TeamProfiles
+    get:
+      parameters:
+      - description: Team ID
+        in: path
+        name: team_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TeamProfile'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get team profile
+      tags:
+      - TeamProfiles
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Team ID
+        in: path
+        name: team_id
+        required: true
+        type: integer
+      - description: Team profile payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.teamProfileRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TeamProfile'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update team profile
+      tags:
+      - TeamProfiles
+  /teams:
+    get:
+      parameters:
+      - description: Search by name or tag
+        in: query
+        name: search
+        type: string
+      - description: Country code
+        in: query
+        name: country_code
+        type: string
+      - description: Discipline ID
+        in: query
+        name: discipline_id
+        type: integer
+      - description: Verification flag
+        in: query
+        name: is_verified
+        type: boolean
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List teams
+      tags:
+      - Teams
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Team payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.teamRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Team'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create team
+      tags:
+      - Teams
+  /teams/{id}:
+    delete:
+      parameters:
+      - description: Team ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete team
+      tags:
+      - Teams
+    get:
+      parameters:
+      - description: Team ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Team'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get team
+      tags:
+      - Teams
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Team ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Team payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.teamRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Team'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update team
+      tags:
+      - Teams
+  /tournament-registrations:
+    get:
+      parameters:
+      - description: Tournament ID
+        in: query
+        name: tournament_id
+        type: integer
+      - description: Team ID
+        in: query
+        name: team_id
+        type: integer
+      - description: Status
+        in: query
+        name: status
+        type: string
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List tournament registrations
+      tags:
+      - TournamentRegistrations
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Registration payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.tournamentRegistrationRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.TournamentRegistration'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create tournament registration
+      tags:
+      - TournamentRegistrations
+  /tournament-registrations/{id}:
+    delete:
+      parameters:
+      - description: Registration ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete tournament registration
+      tags:
+      - TournamentRegistrations
+    get:
+      parameters:
+      - description: Registration ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TournamentRegistration'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get tournament registration
+      tags:
+      - TournamentRegistrations
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Registration ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Registration payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.tournamentRegistrationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TournamentRegistration'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update tournament registration
+      tags:
+      - TournamentRegistrations
+  /tournaments:
+    get:
+      parameters:
+      - description: Search by name
+        in: query
+        name: search
+        type: string
+      - description: Discipline ID
+        in: query
+        name: discipline_id
+        type: integer
+      - description: Tournament status
+        in: query
+        name: status
+        type: string
+      - description: Start date from (YYYY-MM-DD)
+        in: query
+        name: start_from
+        type: string
+      - description: Start date to (YYYY-MM-DD)
+        in: query
+        name: start_to
+        type: string
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List tournaments
+      tags:
+      - Tournaments
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Tournament payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.tournamentRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Tournament'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create tournament
+      tags:
+      - Tournaments
+  /tournaments/{id}:
+    delete:
+      parameters:
+      - description: Tournament ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete tournament
+      tags:
+      - Tournaments
+    get:
+      parameters:
+      - description: Tournament ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Tournament'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get tournament
+      tags:
+      - Tournaments
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Tournament ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Tournament payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.tournamentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Tournament'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update tournament
+      tags:
+      - Tournaments
+swagger: "2.0"

@@ -368,10 +368,10 @@ $$ LANGUAGE plpgsql STABLE;
 CREATE OR REPLACE FUNCTION fn_tournament_standings(p_tournament_id INT)
 RETURNS TABLE (
     team_id INT,
-    matches_played INT,
-    wins INT,
-    losses INT,
-    forfeits INT
+    matches_played BIGINT,
+    wins BIGINT,
+    losses BIGINT,
+    forfeits BIGINT
 ) AS $$
 BEGIN
     RETURN QUERY
@@ -384,15 +384,15 @@ BEGIN
         FROM matches m
         WHERE m.tournament_id = p_tournament_id
     )
-    SELECT team_id,
-           COUNT(*) AS matches_played,
-           COUNT(*) FILTER (WHERE winner_team_id = team_id) AS wins,
-           COUNT(*) FILTER (WHERE winner_team_id IS NOT NULL AND winner_team_id <> team_id) AS losses,
-           COUNT(*) FILTER (WHERE is_forfeit) AS forfeits
-    FROM teams_in_matches
-    WHERE team_id IS NOT NULL
-    GROUP BY team_id
-    ORDER BY wins DESC, losses ASC;
+        SELECT tim.team_id,
+               COUNT(*) AS matches_played,
+               COUNT(*) FILTER (WHERE tim.winner_team_id = tim.team_id) AS wins,
+               COUNT(*) FILTER (WHERE tim.winner_team_id IS NOT NULL AND tim.winner_team_id <> tim.team_id) AS losses,
+               COUNT(*) FILTER (WHERE tim.is_forfeit) AS forfeits
+        FROM teams_in_matches tim
+        WHERE tim.team_id IS NOT NULL
+        GROUP BY tim.team_id
+        ORDER BY wins DESC, losses ASC;
 END;
 $$ LANGUAGE plpgsql STABLE;
 

@@ -173,6 +173,7 @@ func main() {
 	writeMatches(f, matches)
 	writeGames(f, games)
 	writeStats(f, stats)
+	writeSequenceResets(f)
 	writeFooter(f)
 
 	fmt.Printf("Seed generated: %s\n", outPath)
@@ -458,6 +459,27 @@ func writeHeader(f *os.File) {
 
 func writeFooter(f *os.File) {
 	f.WriteString("\nCOMMIT;\n")
+}
+
+func writeSequenceResets(f *os.File) {
+	f.WriteString("-- sync identity sequences to max(id)+1\n")
+	seqs := []string{
+		"disciplines_id_seq",
+		"teams_id_seq",
+		"players_id_seq",
+		"squad_members_id_seq",
+		"tournaments_id_seq",
+		"tournament_registrations_id_seq",
+		"matches_id_seq",
+		"match_games_id_seq",
+		"game_player_stats_id_seq",
+		"audit_logs_id_seq",
+		"batch_import_errors_id_seq",
+	}
+	for _, seq := range seqs {
+		fmt.Fprintf(f, "SELECT setval('%s', (SELECT COALESCE(MAX(id),0)+1 FROM %s), false);\n", seq, strings.TrimSuffix(seq, "_id_seq"))
+	}
+	f.WriteString("\n")
 }
 
 func writeDisciplines(f *os.File, items []Discipline) {
