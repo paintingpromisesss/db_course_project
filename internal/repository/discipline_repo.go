@@ -11,7 +11,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// DisciplineRepository defines persistence contract.
 type DisciplineRepository interface {
 	Create(ctx context.Context, d *models.Discipline) error
 	GetByID(ctx context.Context, id int64) (*models.Discipline, error)
@@ -20,12 +19,10 @@ type DisciplineRepository interface {
 	Delete(ctx context.Context, id int64) error
 }
 
-// NewDisciplineRepository builds a SQLX-backed repository.
 func NewDisciplineRepository(db *sqlx.DB) DisciplineRepository {
 	return &disciplineRepo{db: db}
 }
 
-// ErrDisciplineNotFound signals missing row.
 var ErrDisciplineNotFound = errors.New("discipline not found")
 
 type disciplineRepo struct {

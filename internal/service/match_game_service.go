@@ -10,7 +10,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// MatchGameService orchestrates per-map data.
 type MatchGameService struct {
 	repo repository.MatchGameRepository
 }

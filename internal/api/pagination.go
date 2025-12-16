@@ -8,7 +8,6 @@ import (
 	"db_course_project/internal/pagination"
 )
 
-// ParsePagination extracts limit/offset from query params with defaults.
 func ParsePagination(c *gin.Context) (limit, offset int) {
 	limit = pagination.DefaultLimit
 	offset = 0

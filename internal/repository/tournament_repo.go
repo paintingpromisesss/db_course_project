@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// TournamentRepository persistence.
 type TournamentRepository interface {
 	Create(ctx context.Context, t *models.Tournament) error
 	GetByID(ctx context.Context, id int64) (*models.Tournament, error)
@@ -25,7 +24,6 @@ func NewTournamentRepository(db *sqlx.DB) TournamentRepository {
 	return &tournamentRepo{db: db}
 }
 
-// ErrTournamentNotFound signals missing row.
 var ErrTournamentNotFound = errors.New("tournament not found")
 
 type tournamentRepo struct {

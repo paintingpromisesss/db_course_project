@@ -9,7 +9,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// GamePlayerStatService orchestrates per-player stats.
 type GamePlayerStatService struct {
 	repo repository.GamePlayerStatRepository
 }

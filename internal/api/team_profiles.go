@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// TeamProfileHandler manages team profile endpoints.
 type TeamProfileHandler struct {
 	svc *service.TeamProfileService
 }

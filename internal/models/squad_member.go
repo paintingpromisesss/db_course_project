@@ -2,7 +2,6 @@ package models
 
 import "time"
 
-// SquadMember represents a player within a team's roster.
 type SquadMember struct {
 	ID              int64      `db:"id" json:"id"`
 	TeamID          int64      `db:"team_id" json:"team_id"`
@@ -15,7 +14,6 @@ type SquadMember struct {
 	SalaryMonthly   *float64   `db:"salary_monthly" json:"salary_monthly"`
 }
 
-// SquadMemberFilter supports listing roster entries.
 type SquadMemberFilter struct {
 	TeamID     *int64
 	PlayerID   *int64

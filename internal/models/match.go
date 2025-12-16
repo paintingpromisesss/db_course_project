@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-// Match represents a series between teams.
 type Match struct {
 	ID           int64            `db:"id" json:"id"`
 	TournamentID int64            `db:"tournament_id" json:"tournament_id"`
@@ -19,7 +18,6 @@ type Match struct {
 	MatchNotes   *json.RawMessage `db:"match_notes" json:"match_notes" swaggertype:"object"`
 }
 
-// MatchFilter supports listing.
 type MatchFilter struct {
 	TournamentID *int64
 	TeamID       *int64

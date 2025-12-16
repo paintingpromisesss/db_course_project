@@ -10,7 +10,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// TournamentRegistrationService orchestrates registrations.
 type TournamentRegistrationService struct {
 	repo repository.TournamentRegistrationRepository
 }

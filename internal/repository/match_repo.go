@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// MatchRepository persistence.
 type MatchRepository interface {
 	Create(ctx context.Context, m *models.Match) error
 	GetByID(ctx context.Context, id int64) (*models.Match, error)
@@ -25,7 +24,6 @@ func NewMatchRepository(db *sqlx.DB) MatchRepository {
 	return &matchRepo{db: db}
 }
 
-// ErrMatchNotFound signals missing row.
 var ErrMatchNotFound = errors.New("match not found")
 
 type matchRepo struct {

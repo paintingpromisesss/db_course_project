@@ -7,13 +7,11 @@ import (
 	"time"
 )
 
-// Config holds application configuration loaded from environment variables.
 type Config struct {
 	HTTPAddr string
 	DB       DBConfig
 }
 
-// DBConfig defines database connectivity and pooling settings.
 type DBConfig struct {
 	Host            string
 	Port            int
@@ -26,7 +24,6 @@ type DBConfig struct {
 	ConnMaxLifetime time.Duration
 }
 
-// New reads environment variables and applies sane defaults for local development.
 func New() Config {
 	return Config{
 		HTTPAddr: getEnv("HTTP_ADDR", ":8000"),

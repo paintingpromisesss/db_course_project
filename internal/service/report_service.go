@@ -8,7 +8,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// ReportService exposes reporting use cases.
 type ReportService struct {
 	repo repository.ReportRepository
 }

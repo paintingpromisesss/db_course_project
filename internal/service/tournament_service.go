@@ -11,7 +11,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// TournamentService orchestrates tournaments.
 type TournamentService struct {
 	repo repository.TournamentRepository
 }

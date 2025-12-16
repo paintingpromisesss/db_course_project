@@ -14,7 +14,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// MatchHandler manages match endpoints.
 type MatchHandler struct {
 	svc *service.MatchService
 }

@@ -14,7 +14,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// MatchGameHandler manages per-map endpoints.
 type MatchGameHandler struct {
 	svc *service.MatchGameService
 }

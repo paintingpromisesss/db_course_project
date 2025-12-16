@@ -10,7 +10,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// DisciplineService orchestrates discipline use cases.
 type DisciplineService struct {
 	repo repository.DisciplineRepository
 }

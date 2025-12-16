@@ -2,7 +2,6 @@ package models
 
 import "time"
 
-// Team represents an esports team.
 type Team struct {
 	ID           int64     `db:"id" json:"id"`
 	Name         string    `db:"name" json:"name"`
@@ -15,7 +14,6 @@ type Team struct {
 	IsVerified   bool      `db:"is_verified" json:"is_verified"`
 }
 
-// TeamFilter describes list filters for teams.
 type TeamFilter struct {
 	Search       string
 	CountryCode  string

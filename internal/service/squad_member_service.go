@@ -11,7 +11,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// SquadMemberService orchestrates roster entries.
 type SquadMemberService struct {
 	repo repository.SquadMemberRepository
 }

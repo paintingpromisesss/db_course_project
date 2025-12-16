@@ -11,7 +11,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// PlayerService handles player use cases.
 type PlayerService struct {
 	repo repository.PlayerRepository
 }

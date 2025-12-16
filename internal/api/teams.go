@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// TeamHandler manages team endpoints.
 type TeamHandler struct {
 	svc *service.TeamService
 }

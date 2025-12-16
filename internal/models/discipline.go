@@ -2,7 +2,6 @@ package models
 
 import "encoding/json"
 
-// Discipline represents an esport discipline (game title).
 type Discipline struct {
 	ID          int64           `db:"id" json:"id"`
 	Code        string          `db:"code" json:"code"`
@@ -14,7 +13,6 @@ type Discipline struct {
 	Metadata    json.RawMessage `db:"metadata" json:"metadata" swaggertype:"object"`
 }
 
-// DisciplineFilter holds query parameters for listing.
 type DisciplineFilter struct {
 	Search   string
 	IsActive *bool

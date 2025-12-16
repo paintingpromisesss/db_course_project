@@ -13,7 +13,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// TournamentRegistrationHandler manages registrations.
 type TournamentRegistrationHandler struct {
 	svc *service.TournamentRegistrationService
 }

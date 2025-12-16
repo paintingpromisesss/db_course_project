@@ -13,7 +13,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// SquadMemberHandler manages roster endpoints.
 type SquadMemberHandler struct {
 	svc *service.SquadMemberService
 }
@@ -41,7 +40,6 @@ type squadMemberRequest struct {
 	SalaryMonthly   *float64 `json:"salary_monthly"`
 }
 
-// parseDatePtrSM parses optional YYYY-MM-DD date strings.
 func parseDatePtrSM(value *string) (*time.Time, error) {
 	if value == nil || *value == "" {
 		return nil, nil

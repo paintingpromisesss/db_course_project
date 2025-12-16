@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-// MatchGame stores per-map data.
 type MatchGame struct {
 	ID                int64           `db:"id" json:"id"`
 	MatchID           int64           `db:"match_id" json:"match_id"`
@@ -20,7 +19,6 @@ type MatchGame struct {
 	PickBanPhase      json.RawMessage `db:"pick_ban_phase" json:"pick_ban_phase" swaggertype:"object"`
 }
 
-// MatchGameFilter supports listing.
 type MatchGameFilter struct {
 	MatchID      *int64
 	WinnerTeamID *int64

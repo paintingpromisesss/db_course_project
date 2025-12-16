@@ -443,6 +443,90 @@ definitions:
       tournament_id:
         type: integer
     type: object
+  service.DisciplineImportInput:
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+      icon_url:
+        type: string
+      is_active:
+        type: boolean
+      metadata:
+        type: object
+      name:
+        type: string
+      team_size:
+        type: integer
+    type: object
+  service.GamePlayerStatImportInput:
+    properties:
+      assists:
+        type: integer
+      damage_dealt:
+        type: integer
+      deaths:
+        type: integer
+      game_id:
+        type: integer
+      gold_earned:
+        type: integer
+      hero_name:
+        type: string
+      kills:
+        type: integer
+      player_id:
+        type: integer
+      team_id:
+        type: integer
+      was_mvp:
+        type: boolean
+    type: object
+  service.MatchGameImportInput:
+    properties:
+      duration_seconds:
+        type: integer
+      game_number:
+        type: integer
+      had_technical_pause:
+        type: boolean
+      map_name:
+        type: string
+      match_id:
+        type: integer
+      pick_ban_phase:
+        type: object
+      score_team1:
+        type: integer
+      score_team2:
+        type: integer
+      started_at:
+        type: string
+      winner_team_id:
+        type: integer
+    type: object
+  service.MatchImportInput:
+    properties:
+      format:
+        type: string
+      is_forfeit:
+        type: boolean
+      match_notes:
+        type: object
+      stage:
+        type: string
+      start_time:
+        type: string
+      team1_id:
+        type: integer
+      team2_id:
+        type: integer
+      tournament_id:
+        type: integer
+      winner_team_id:
+        type: integer
+    type: object
   service.PlayerImportInput:
     properties:
       avatar_url:
@@ -461,6 +545,95 @@ definitions:
         type: string
       steam_id:
         type: string
+    type: object
+  service.SquadMemberImportInput:
+    properties:
+      contract_end_date:
+        type: string
+      is_standin:
+        type: boolean
+      join_date:
+        type: string
+      leave_date:
+        type: string
+      player_id:
+        type: integer
+      role:
+        type: string
+      salary_monthly:
+        type: number
+      team_id:
+        type: integer
+    type: object
+  service.TeamImportInput:
+    properties:
+      country_code:
+        type: string
+      discipline_id:
+        type: integer
+      is_verified:
+        type: boolean
+      logo_url:
+        type: string
+      name:
+        type: string
+      tag:
+        type: string
+      world_ranking:
+        type: number
+    type: object
+  service.TeamProfileImportInput:
+    properties:
+      coach_name:
+        type: string
+      contact_email:
+        type: string
+      headquarters:
+        type: string
+      sponsor_info:
+        type: string
+      team_id:
+        type: integer
+      website:
+        type: string
+    type: object
+  service.TournamentImportInput:
+    properties:
+      bracket_config:
+        type: object
+      currency:
+        type: string
+      discipline_id:
+        type: integer
+      end_date:
+        type: string
+      is_online:
+        type: boolean
+      name:
+        type: string
+      prize_pool:
+        type: number
+      start_date:
+        type: string
+      status:
+        type: string
+    type: object
+  service.TournamentRegistrationImportInput:
+    properties:
+      is_invited:
+        type: boolean
+      manager_contact:
+        type: string
+      roster_snapshot:
+        type: object
+      seed_number:
+        type: integer
+      status:
+        type: string
+      team_id:
+        type: integer
+      tournament_id:
+        type: integer
     type: object
 info:
   contact: {}
@@ -502,6 +675,366 @@ paths:
               type: string
             type: object
       summary: Batch import players
+      tags:
+      - Utility
+  /batch-import/disciplines:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Disciplines to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.DisciplineImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import disciplines
+      tags:
+      - Utility
+  /batch-import/game-player-stats:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Game player stats to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.GamePlayerStatImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import game player stats
+      tags:
+      - Utility
+  /batch-import/match-games:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Match games to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.MatchGameImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import match games
+      tags:
+      - Utility
+  /batch-import/matches:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Matches to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.MatchImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import matches
+      tags:
+      - Utility
+  /batch-import/players:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Players to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.PlayerImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import players
+      tags:
+      - Utility
+  /batch-import/squad-members:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Squad members to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.SquadMemberImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import squad members
+      tags:
+      - Utility
+  /batch-import/team-profiles:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Team profiles to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.TeamProfileImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import team profiles
+      tags:
+      - Utility
+  /batch-import/teams:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Teams to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.TeamImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import teams
+      tags:
+      - Utility
+  /batch-import/tournament-registrations:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Registrations to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.TournamentRegistrationImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import tournament registrations
+      tags:
+      - Utility
+  /batch-import/tournaments:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Tournaments to import
+        in: body
+        name: payload
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/service.TournamentImportInput'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Batch import tournaments
       tags:
       - Utility
   /disciplines:

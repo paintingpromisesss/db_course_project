@@ -13,7 +13,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// PlayerHandler manages player endpoints.
 type PlayerHandler struct {
 	svc *service.PlayerService
 }

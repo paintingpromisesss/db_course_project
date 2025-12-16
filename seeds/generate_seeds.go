@@ -247,7 +247,6 @@ func buildSquadMembers(players []Player, teams []Team) []SquadMember {
 	roles := []string{"Player", "Support", "Carry", "Coach", "IGL", "Analyst"}
 	squad := make([]SquadMember, 0, len(players))
 
-	// Distribute players evenly across teams for active rosters
 	teamIndex := 0
 	for i, p := range players {
 		team := teams[teamIndex]
@@ -291,7 +290,6 @@ func buildRegistrations(tournaments []Tournament, teams []Team) []Registration {
 	regs := []Registration{}
 	id := 1
 	for _, t := range tournaments {
-		// filter teams by discipline
 		sameDisc := []Team{}
 		for _, tm := range teams {
 			if tm.DisciplineID == t.DisciplineID {
@@ -398,7 +396,6 @@ func buildGames(matches []Match) []Game {
 func buildStats(games []Game, matches []Match, squad []SquadMember) []Stat {
 	stats := []Stat{}
 	id := 1
-	// map team -> players for quick selection
 	teamPlayers := map[int][]int{}
 	for _, sm := range squad {
 		teamPlayers[sm.TeamID] = append(teamPlayers[sm.TeamID], sm.PlayerID)
@@ -447,7 +444,6 @@ func pickTeam(playerID int, m Match, squad []SquadMember) int {
 			}
 		}
 	}
-	// fallback
 	return m.Team1ID
 }
 

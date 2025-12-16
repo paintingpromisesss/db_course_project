@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-// TournamentRegistration links team to tournament.
 type TournamentRegistration struct {
 	ID             int64           `db:"id" json:"id"`
 	TournamentID   int64           `db:"tournament_id" json:"tournament_id"`
@@ -18,7 +17,6 @@ type TournamentRegistration struct {
 	RegisteredAt   time.Time       `db:"registered_at" json:"registered_at"`
 }
 
-// TournamentRegistrationFilter supports listing.
 type TournamentRegistrationFilter struct {
 	TournamentID *int64
 	TeamID       *int64

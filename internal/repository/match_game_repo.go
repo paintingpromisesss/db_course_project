@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// MatchGameRepository persistence.
 type MatchGameRepository interface {
 	Create(ctx context.Context, g *models.MatchGame) error
 	GetByID(ctx context.Context, id int64) (*models.MatchGame, error)
@@ -25,7 +24,6 @@ func NewMatchGameRepository(db *sqlx.DB) MatchGameRepository {
 	return &matchGameRepo{db: db}
 }
 
-// ErrMatchGameNotFound signals missing row.
 var ErrMatchGameNotFound = errors.New("match game not found")
 
 type matchGameRepo struct {

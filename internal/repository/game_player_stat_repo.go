@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// GamePlayerStatRepository persistence.
 type GamePlayerStatRepository interface {
 	Create(ctx context.Context, s *models.GamePlayerStat) error
 	GetByID(ctx context.Context, id int64) (*models.GamePlayerStat, error)
@@ -25,7 +24,6 @@ func NewGamePlayerStatRepository(db *sqlx.DB) GamePlayerStatRepository {
 	return &gamePlayerStatRepo{db: db}
 }
 
-// ErrGamePlayerStatNotFound signals missing row.
 var ErrGamePlayerStatNotFound = errors.New("game player stat not found")
 
 type gamePlayerStatRepo struct {

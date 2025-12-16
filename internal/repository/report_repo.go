@@ -10,7 +10,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// ReportRepository provides read access to reporting views/functions.
 type ReportRepository interface {
 	ActiveRosters(ctx context.Context, limit, offset int) ([]models.ActiveRosterView, int, error)
 	MatchResults(ctx context.Context, tournamentID *int64, limit, offset int) ([]models.MatchResultView, int, error)

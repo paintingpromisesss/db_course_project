@@ -10,7 +10,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// TeamService orchestrates team use cases.
 type TeamService struct {
 	repo repository.TeamRepository
 }

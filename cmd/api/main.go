@@ -37,7 +37,6 @@ func main() {
 	}
 	defer sqlxDB.Close()
 
-	// Wiring repositories and services.
 	disciplineRepo := repository.NewDisciplineRepository(sqlxDB)
 	teamRepo := repository.NewTeamRepository(sqlxDB)
 	playerRepo := repository.NewPlayerRepository(sqlxDB)
@@ -54,7 +53,6 @@ func main() {
 	teamSvc := service.NewTeamService(teamRepo)
 	playerSvc := service.NewPlayerService(playerRepo)
 	reportSvc := service.NewReportService(reportRepo)
-	importSvc := service.NewImportService(sqlxDB)
 	tournamentSvc := service.NewTournamentService(tournamentRepo)
 	teamProfileSvc := service.NewTeamProfileService(teamProfileRepo)
 	squadMemberSvc := service.NewSquadMemberService(squadMemberRepo)
@@ -62,6 +60,7 @@ func main() {
 	matchSvc := service.NewMatchService(matchRepo)
 	matchGameSvc := service.NewMatchGameService(matchGameRepo)
 	gamePlayerStatSvc := service.NewGamePlayerStatService(gamePlayerStatRepo)
+	importSvc := service.NewImportService(sqlxDB, disciplineSvc, teamSvc, playerSvc, tournamentSvc, tournamentRegistrationSvc, matchSvc, matchGameSvc, gamePlayerStatSvc, squadMemberSvc, teamProfileSvc)
 
 	disciplineHandler := api.NewDisciplineHandler(disciplineSvc)
 	teamHandler := api.NewTeamHandler(teamSvc)

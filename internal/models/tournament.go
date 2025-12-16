@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-// Tournament represents a tournament event.
 type Tournament struct {
 	ID            int64           `db:"id" json:"id"`
 	DisciplineID  int64           `db:"discipline_id" json:"discipline_id"`
@@ -18,8 +17,6 @@ type Tournament struct {
 	IsOnline      bool            `db:"is_online" json:"is_online"`
 	BracketConfig json.RawMessage `db:"bracket_config" json:"bracket_config" swaggertype:"object"`
 }
-
-// TournamentFilter supports listing.
 type TournamentFilter struct {
 	Search       string
 	DisciplineID *int64

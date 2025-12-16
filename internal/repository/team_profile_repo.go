@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// TeamProfileRepository persistence layer.
 type TeamProfileRepository interface {
 	Create(ctx context.Context, p *models.TeamProfile) error
 	GetByTeamID(ctx context.Context, teamID int64) (*models.TeamProfile, error)
@@ -25,7 +24,6 @@ func NewTeamProfileRepository(db *sqlx.DB) TeamProfileRepository {
 	return &teamProfileRepo{db: db}
 }
 
-// ErrTeamProfileNotFound signals missing row.
 var ErrTeamProfileNotFound = errors.New("team profile not found")
 
 type teamProfileRepo struct {

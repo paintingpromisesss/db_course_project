@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// TeamRepository defines persistence contract for teams.
 type TeamRepository interface {
 	Create(ctx context.Context, t *models.Team) error
 	GetByID(ctx context.Context, id int64) (*models.Team, error)
@@ -21,12 +20,10 @@ type TeamRepository interface {
 	Delete(ctx context.Context, id int64) error
 }
 
-// NewTeamRepository builds a SQLX-backed repo.
 func NewTeamRepository(db *sqlx.DB) TeamRepository {
 	return &teamRepo{db: db}
 }
 
-// ErrTeamNotFound signals missing team row.
 var ErrTeamNotFound = errors.New("team not found")
 
 type teamRepo struct {

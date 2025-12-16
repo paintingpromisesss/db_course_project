@@ -14,7 +14,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// TournamentHandler manages tournament endpoints.
 type TournamentHandler struct {
 	svc *service.TournamentService
 }

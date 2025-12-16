@@ -11,7 +11,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// MatchService orchestrates match operations.
 type MatchService struct {
 	repo repository.MatchRepository
 }

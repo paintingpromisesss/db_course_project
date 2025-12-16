@@ -9,7 +9,6 @@ import (
 	"db_course_project/internal/repository"
 )
 
-// TeamProfileService orchestrates profile operations.
 type TeamProfileService struct {
 	repo repository.TeamProfileRepository
 }

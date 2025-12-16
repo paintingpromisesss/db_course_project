@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// GamePlayerStatHandler manages per-player stats endpoints.
 type GamePlayerStatHandler struct {
 	svc *service.GamePlayerStatService
 }

@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// PlayerRepository defines persistence for players.
 type PlayerRepository interface {
 	Create(ctx context.Context, p *models.Player) error
 	GetByID(ctx context.Context, id int64) (*models.Player, error)
@@ -25,7 +24,6 @@ func NewPlayerRepository(db *sqlx.DB) PlayerRepository {
 	return &playerRepo{db: db}
 }
 
-// ErrPlayerNotFound signals missing row.
 var ErrPlayerNotFound = errors.New("player not found")
 
 type playerRepo struct {

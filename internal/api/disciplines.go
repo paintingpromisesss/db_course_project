@@ -13,7 +13,6 @@ import (
 	"db_course_project/internal/service"
 )
 
-// DisciplineHandler registers discipline endpoints.
 type DisciplineHandler struct {
 	svc *service.DisciplineService
 }

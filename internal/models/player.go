@@ -2,7 +2,6 @@ package models
 
 import "time"
 
-// Player represents a single player.
 type Player struct {
 	ID          int64      `db:"id" json:"id"`
 	Nickname    string     `db:"nickname" json:"nickname"`
@@ -16,7 +15,6 @@ type Player struct {
 	CreatedAt   time.Time  `db:"created_at" json:"created_at"`
 }
 
-// PlayerFilter describes list filters for players.
 type PlayerFilter struct {
 	Search      string
 	CountryCode string

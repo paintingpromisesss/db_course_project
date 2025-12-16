@@ -12,7 +12,6 @@ import (
 	"db_course_project/internal/models"
 )
 
-// SquadMemberRepository persistence.
 type SquadMemberRepository interface {
 	Create(ctx context.Context, m *models.SquadMember) error
 	GetByID(ctx context.Context, id int64) (*models.SquadMember, error)
@@ -25,7 +24,6 @@ func NewSquadMemberRepository(db *sqlx.DB) SquadMemberRepository {
 	return &squadMemberRepo{db: db}
 }
 
-// ErrSquadMemberNotFound signals missing row.
 var ErrSquadMemberNotFound = errors.New("squad member not found")
 
 type squadMemberRepo struct {

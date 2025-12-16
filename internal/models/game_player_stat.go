@@ -1,6 +1,5 @@
 package models
 
-// GamePlayerStat holds per-player stats for a map.
 type GamePlayerStat struct {
 	ID          int64   `db:"id" json:"id"`
 	GameID      int64   `db:"game_id" json:"game_id"`
@@ -16,7 +15,6 @@ type GamePlayerStat struct {
 	WasMVP      bool    `db:"was_mvp" json:"was_mvp"`
 }
 
-// GamePlayerStatFilter supports listing.
 type GamePlayerStatFilter struct {
 	GameID   *int64
 	PlayerID *int64
