@@ -70,6 +70,11 @@ func (h *MatchHandler) Create(c *gin.Context) {
 	if req.IsForfeit != nil {
 		isForfeit = *req.IsForfeit
 	}
+	var matchNotes *json.RawMessage
+	if req.MatchNotes != nil {
+		mn := req.MatchNotes
+		matchNotes = &mn
+	}
 	m := &models.Match{
 		TournamentID: req.TournamentID,
 		Team1ID:      req.Team1ID,
@@ -79,7 +84,7 @@ func (h *MatchHandler) Create(c *gin.Context) {
 		Stage:        req.Stage,
 		WinnerTeamID: req.WinnerTeamID,
 		IsForfeit:    isForfeit,
-		MatchNotes:   req.MatchNotes,
+		MatchNotes:   matchNotes,
 	}
 	if err := h.svc.Create(c.Request.Context(), m); err != nil {
 		RespondError(c, http.StatusBadRequest, err.Error())
@@ -203,6 +208,11 @@ func (h *MatchHandler) Update(c *gin.Context) {
 	if req.IsForfeit != nil {
 		isForfeit = *req.IsForfeit
 	}
+	var matchNotes *json.RawMessage
+	if req.MatchNotes != nil {
+		mn := req.MatchNotes
+		matchNotes = &mn
+	}
 	m := &models.Match{
 		ID:           id,
 		TournamentID: req.TournamentID,
@@ -213,7 +223,7 @@ func (h *MatchHandler) Update(c *gin.Context) {
 		Stage:        req.Stage,
 		WinnerTeamID: req.WinnerTeamID,
 		IsForfeit:    isForfeit,
-		MatchNotes:   req.MatchNotes,
+		MatchNotes:   matchNotes,
 	}
 	if err := h.svc.Update(c.Request.Context(), m); err != nil {
 		if errors.Is(err, repository.ErrMatchNotFound) {

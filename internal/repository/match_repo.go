@@ -76,11 +76,11 @@ func (r *matchRepo) List(ctx context.Context, filter models.MatchFilter) ([]mode
 	}
 	if filter.Stage != "" {
 		args = append(args, filter.Stage)
-		conds.WriteString(` AND stage = $` + strconv.Itoa(len(args)))
+		conds.WriteString(` AND LOWER(stage) = LOWER($` + strconv.Itoa(len(args)) + `)`)
 	}
 	if filter.Format != "" {
 		args = append(args, filter.Format)
-		conds.WriteString(` AND format = $` + strconv.Itoa(len(args)))
+		conds.WriteString(` AND LOWER(format) = LOWER($` + strconv.Itoa(len(args)) + `)`)
 	}
 	if filter.From != nil {
 		args = append(args, *filter.From)

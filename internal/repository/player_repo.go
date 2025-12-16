@@ -73,7 +73,7 @@ func (r *playerRepo) List(ctx context.Context, filter models.PlayerFilter) ([]mo
 	}
 	if filter.CountryCode != "" {
 		args = append(args, filter.CountryCode)
-		conds.WriteString(` AND country_code = $` + strconv.Itoa(len(args)))
+		conds.WriteString(` AND LOWER(country_code) = LOWER($` + strconv.Itoa(len(args)) + `)`)
 	}
 	if filter.IsRetired != nil {
 		args = append(args, *filter.IsRetired)

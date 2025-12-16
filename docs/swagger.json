@@ -2783,11 +2783,20 @@
                 "description": {
                     "type": "string"
                 },
+                "icon_url": {
+                    "type": "string"
+                },
                 "is_active": {
                     "type": "boolean"
                 },
+                "metadata": {
+                    "type": "object"
+                },
                 "name": {
                     "type": "string"
+                },
+                "team_size": {
+                    "type": "integer"
                 }
             }
         },
@@ -3069,7 +3078,7 @@
             ],
             "properties": {
                 "bracket_config": {
-                    "type": "string"
+                    "type": "object"
                 },
                 "currency": {
                     "type": "string"
@@ -3103,13 +3112,10 @@
                 "code": {
                     "type": "string"
                 },
-                "created_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
-                },
                 "description": {
+                    "type": "string"
+                },
+                "icon_url": {
                     "type": "string"
                 },
                 "id": {
@@ -3118,11 +3124,14 @@
                 "is_active": {
                     "type": "boolean"
                 },
+                "metadata": {
+                    "type": "object"
+                },
                 "name": {
                     "type": "string"
                 },
-                "updated_at": {
-                    "type": "string"
+                "team_size": {
+                    "type": "integer"
                 }
             }
         },
@@ -3366,7 +3375,7 @@
             "type": "object",
             "properties": {
                 "bracket_config": {
-                    "type": "string"
+                    "type": "object"
                 },
                 "currency": {
                     "type": "string"

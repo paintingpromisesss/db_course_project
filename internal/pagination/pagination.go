@@ -5,7 +5,6 @@ const (
 	MaxLimit     = 100
 )
 
-// Normalize clamps limit/offset to sane bounds.
 func Normalize(limit, offset int) (int, int) {
 	if limit <= 0 {
 		limit = DefaultLimit

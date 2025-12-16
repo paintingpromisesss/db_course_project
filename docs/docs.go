@@ -2790,11 +2790,20 @@ const docTemplate = `{
                 "description": {
                     "type": "string"
                 },
+                "icon_url": {
+                    "type": "string"
+                },
                 "is_active": {
                     "type": "boolean"
                 },
+                "metadata": {
+                    "type": "object"
+                },
                 "name": {
                     "type": "string"
+                },
+                "team_size": {
+                    "type": "integer"
                 }
             }
         },
@@ -3076,7 +3085,7 @@ const docTemplate = `{
             ],
             "properties": {
                 "bracket_config": {
-                    "type": "string"
+                    "type": "object"
                 },
                 "currency": {
                     "type": "string"
@@ -3110,13 +3119,10 @@ const docTemplate = `{
                 "code": {
                     "type": "string"
                 },
-                "created_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
-                },
                 "description": {
+                    "type": "string"
+                },
+                "icon_url": {
                     "type": "string"
                 },
                 "id": {
@@ -3125,11 +3131,14 @@ const docTemplate = `{
                 "is_active": {
                     "type": "boolean"
                 },
+                "metadata": {
+                    "type": "object"
+                },
                 "name": {
                     "type": "string"
                 },
-                "updated_at": {
-                    "type": "string"
+                "team_size": {
+                    "type": "integer"
                 }
             }
         },
@@ -3373,7 +3382,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "bracket_config": {
-                    "type": "string"
+                    "type": "object"
                 },
                 "currency": {
                     "type": "string"

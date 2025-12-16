@@ -6,10 +6,16 @@ definitions:
         type: string
       description:
         type: string
+      icon_url:
+        type: string
       is_active:
         type: boolean
+      metadata:
+        type: object
       name:
         type: string
+      team_size:
+        type: integer
     required:
     - code
     - name
@@ -196,7 +202,7 @@ definitions:
   api.tournamentRequest:
     properties:
       bracket_config:
-        type: string
+        type: object
       currency:
         type: string
       discipline_id:
@@ -223,20 +229,20 @@ definitions:
     properties:
       code:
         type: string
-      created_at:
-        type: string
-      deleted_at:
-        type: string
       description:
+        type: string
+      icon_url:
         type: string
       id:
         type: integer
       is_active:
         type: boolean
+      metadata:
+        type: object
       name:
         type: string
-      updated_at:
-        type: string
+      team_size:
+        type: integer
     type: object
   models.GamePlayerStat:
     properties:
@@ -396,7 +402,7 @@ definitions:
   models.Tournament:
     properties:
       bracket_config:
-        type: string
+        type: object
       currency:
         type: string
       discipline_id:

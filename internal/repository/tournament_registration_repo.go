@@ -74,7 +74,7 @@ func (r *tournamentRegistrationRepo) List(ctx context.Context, filter models.Tou
 	}
 	if filter.Status != "" {
 		args = append(args, filter.Status)
-		conds.WriteString(` AND status = $` + strconv.Itoa(len(args)))
+		conds.WriteString(` AND LOWER(status) = LOWER($` + strconv.Itoa(len(args)) + `)`)
 	}
 
 	countQuery := `SELECT count(*) ` + base + conds.String()

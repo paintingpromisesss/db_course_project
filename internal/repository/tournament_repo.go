@@ -78,7 +78,7 @@ func (r *tournamentRepo) List(ctx context.Context, filter models.TournamentFilte
 	}
 	if filter.Status != "" {
 		args = append(args, filter.Status)
-		conds.WriteString(` AND status = $` + strconv.Itoa(len(args)))
+		conds.WriteString(` AND LOWER(status) = LOWER($` + strconv.Itoa(len(args)) + `)`)
 	}
 	if filter.StartFrom != nil {
 		args = append(args, *filter.StartFrom)
