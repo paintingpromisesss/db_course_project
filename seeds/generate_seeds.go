@@ -190,10 +190,22 @@ func buildDisciplines() []Discipline {
 func buildTeams(count int, disciplines []Discipline) []Team {
 	countries := []string{"US", "BR", "DE", "SE", "PL", "FR", "ES", "RU", "UA", "CN"}
 	teams := make([]Team, 0, count)
+	// Track used tags per discipline to avoid violating (tag, discipline_id) unique constraint
+	usedTags := make(map[int]map[string]bool)
 	for i := 1; i <= count; i++ {
 		disc := disciplines[(i-1)%len(disciplines)]
+		if usedTags[disc.ID] == nil {
+			usedTags[disc.ID] = make(map[string]bool)
+		}
 		name := fmt.Sprintf("%s %s", gofakeit.Company(), gofakeit.JobDescriptor())
-		tag := strings.ToUpper(gofakeit.LetterN(3))
+		tag := ""
+		for {
+			tag = strings.ToUpper(gofakeit.LetterN(3))
+			if !usedTags[disc.ID][tag] {
+				usedTags[disc.ID][tag] = true
+				break
+			}
+		}
 		teams = append(teams, Team{
 			ID:           i,
 			Name:         name,

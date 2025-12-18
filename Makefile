@@ -4,8 +4,7 @@ generate-seeds:
 	go run ./seeds/generate_seeds.go --players $${players-1000} --teams $${teams-50} --tournaments $${tournaments-25} --out $${out-seeds/generated_seed.sql}
 
 
-db-seed: generate-seeds db-down
-	docker compose up --build -d db
+db-seed:
 	docker compose exec -T db psql -U postgres -d cyber_tournament -f /seeds/generated_seed.sql
 
 build:
