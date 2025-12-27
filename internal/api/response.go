@@ -13,26 +13,22 @@ type PaginationMeta struct {
 	Offset int `json:"offset"`
 }
 
-// ErrorDetail holds the error message.
 // swagger:model
 type ErrorDetail struct {
 	Message string `json:"message"`
 }
 
-// ErrorResponse describes the error envelope used across the API.
 // swagger:model
 type ErrorResponse struct {
 	Error ErrorDetail `json:"error"`
 }
 
-// EmptyResponse is used when no body data is returned.
 // swagger:model
 type EmptyResponse struct {
 	Data interface{} `json:"data"`
 	Meta interface{} `json:"meta"`
 }
 
-// ---- Discipline responses
 // swagger:model
 type DisciplineResponse struct {
 	Data models.Discipline `json:"data"`
@@ -45,7 +41,6 @@ type DisciplineListResponse struct {
 	Meta PaginationMeta      `json:"meta"`
 }
 
-// ---- Player responses
 // swagger:model
 type PlayerResponse struct {
 	Data models.Player `json:"data"`
@@ -58,7 +53,6 @@ type PlayerListResponse struct {
 	Meta PaginationMeta  `json:"meta"`
 }
 
-// ---- Team responses
 // swagger:model
 type TeamResponse struct {
 	Data models.Team `json:"data"`
@@ -71,7 +65,6 @@ type TeamListResponse struct {
 	Meta PaginationMeta `json:"meta"`
 }
 
-// ---- Tournament responses
 // swagger:model
 type TournamentResponse struct {
 	Data models.Tournament `json:"data"`
@@ -84,7 +77,6 @@ type TournamentListResponse struct {
 	Meta PaginationMeta      `json:"meta"`
 }
 
-// ---- Tournament registration responses
 // swagger:model
 type TournamentRegistrationResponse struct {
 	Data models.TournamentRegistration `json:"data"`
@@ -97,7 +89,6 @@ type TournamentRegistrationListResponse struct {
 	Meta PaginationMeta                  `json:"meta"`
 }
 
-// ---- Match responses
 // swagger:model
 type MatchResponse struct {
 	Data models.Match `json:"data"`
@@ -110,7 +101,6 @@ type MatchListResponse struct {
 	Meta PaginationMeta `json:"meta"`
 }
 
-// ---- Match game responses
 // swagger:model
 type MatchGameResponse struct {
 	Data models.MatchGame `json:"data"`
@@ -123,7 +113,6 @@ type MatchGameListResponse struct {
 	Meta PaginationMeta     `json:"meta"`
 }
 
-// ---- Game player stats responses
 // swagger:model
 type GamePlayerStatResponse struct {
 	Data models.GamePlayerStat `json:"data"`
@@ -136,7 +125,6 @@ type GamePlayerStatListResponse struct {
 	Meta PaginationMeta          `json:"meta"`
 }
 
-// ---- Squad member responses
 // swagger:model
 type SquadMemberResponse struct {
 	Data models.SquadMember `json:"data"`
@@ -149,7 +137,6 @@ type SquadMemberListResponse struct {
 	Meta PaginationMeta       `json:"meta"`
 }
 
-// ---- Team profile responses
 // swagger:model
 type TeamProfileResponse struct {
 	Data models.TeamProfile `json:"data"`
@@ -162,14 +149,12 @@ type TeamProfileListResponse struct {
 	Meta PaginationMeta       `json:"meta"`
 }
 
-// ---- Imports
 // swagger:model
 type ImportSummaryResponse struct {
 	Data service.ImportSummary `json:"data"`
 	Meta interface{}           `json:"meta"`
 }
 
-// ---- Reports
 // swagger:model
 type ActiveRostersResponse struct {
 	Data []models.ActiveRosterView `json:"data"`
