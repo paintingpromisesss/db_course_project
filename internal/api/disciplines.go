@@ -44,8 +44,8 @@ func (h *DisciplineHandler) Register(rg *gin.RouterGroup) {
 // @Accept json
 // @Produce json
 // @Param payload body disciplineRequest true "Discipline payload"
-// @Success 201 {object} models.Discipline
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} DisciplineResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /disciplines [post]
 func (h *DisciplineHandler) Create(c *gin.Context) {
 	var req disciplineRequest
@@ -82,9 +82,9 @@ func (h *DisciplineHandler) Create(c *gin.Context) {
 // @Tags Disciplines
 // @Produce json
 // @Param id path int true "Discipline ID"
-// @Success 200 {object} models.Discipline
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} DisciplineResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /disciplines/{id} [get]
 func (h *DisciplineHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -111,8 +111,8 @@ func (h *DisciplineHandler) Get(c *gin.Context) {
 // @Param is_active query bool false "Filter by active flag"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} DisciplineListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /disciplines [get]
 func (h *DisciplineHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -148,9 +148,9 @@ func (h *DisciplineHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Discipline ID"
 // @Param payload body disciplineRequest true "Discipline payload"
-// @Success 200 {object} models.Discipline
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} DisciplineResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /disciplines/{id} [put]
 func (h *DisciplineHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -197,9 +197,9 @@ func (h *DisciplineHandler) Update(c *gin.Context) {
 // @Tags Disciplines
 // @Produce json
 // @Param id path int true "Discipline ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /disciplines/{id} [delete]
 func (h *DisciplineHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

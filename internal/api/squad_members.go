@@ -60,8 +60,8 @@ func parseDateValue(value string) (time.Time, error) {
 // @Accept json
 // @Produce json
 // @Param payload body squadMemberRequest true "Squad member payload"
-// @Success 201 {object} models.SquadMember
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} SquadMemberResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /squad-members [post]
 func (h *SquadMemberHandler) Create(c *gin.Context) {
 	var req squadMemberRequest
@@ -113,9 +113,9 @@ func (h *SquadMemberHandler) Create(c *gin.Context) {
 // @Tags SquadMembers
 // @Produce json
 // @Param id path int true "Squad member ID"
-// @Success 200 {object} models.SquadMember
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} SquadMemberResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /squad-members/{id} [get]
 func (h *SquadMemberHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -143,8 +143,8 @@ func (h *SquadMemberHandler) Get(c *gin.Context) {
 // @Param active_only query bool false "Only active"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} SquadMemberListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /squad-members [get]
 func (h *SquadMemberHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -177,9 +177,9 @@ func (h *SquadMemberHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Squad member ID"
 // @Param payload body squadMemberRequest true "Squad member payload"
-// @Success 200 {object} models.SquadMember
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} SquadMemberResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /squad-members/{id} [put]
 func (h *SquadMemberHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -241,9 +241,9 @@ func (h *SquadMemberHandler) Update(c *gin.Context) {
 // @Tags SquadMembers
 // @Produce json
 // @Param id path int true "Squad member ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /squad-members/{id} [delete]
 func (h *SquadMemberHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

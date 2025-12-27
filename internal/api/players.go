@@ -56,8 +56,8 @@ func parseDatePtr(value *string) (*time.Time, error) {
 // @Accept json
 // @Produce json
 // @Param payload body playerRequest true "Player payload"
-// @Success 201 {object} models.Player
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} PlayerResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /players [post]
 func (h *PlayerHandler) Create(c *gin.Context) {
 	var req playerRequest
@@ -97,9 +97,9 @@ func (h *PlayerHandler) Create(c *gin.Context) {
 // @Tags Players
 // @Produce json
 // @Param id path int true "Player ID"
-// @Success 200 {object} models.Player
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} PlayerResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /players/{id} [get]
 func (h *PlayerHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -129,8 +129,8 @@ func (h *PlayerHandler) Get(c *gin.Context) {
 // @Param max_mmr query number false "Max MMR"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} PlayerListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /players [get]
 func (h *PlayerHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -176,9 +176,9 @@ func (h *PlayerHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Player ID"
 // @Param payload body playerRequest true "Player payload"
-// @Success 200 {object} models.Player
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} PlayerResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /players/{id} [put]
 func (h *PlayerHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -228,9 +228,9 @@ func (h *PlayerHandler) Update(c *gin.Context) {
 // @Tags Players
 // @Produce json
 // @Param id path int true "Player ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /players/{id} [delete]
 func (h *PlayerHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

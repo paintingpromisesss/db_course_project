@@ -1,5 +1,233 @@
 basePath: /api
 definitions:
+  api.ActiveRostersResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.ActiveRosterView'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.DisciplineListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Discipline'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.DisciplineResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.Discipline'
+      meta: {}
+    type: object
+  api.EmptyResponse:
+    properties:
+      data: {}
+      meta: {}
+    type: object
+  api.ErrorDetail:
+    properties:
+      message:
+        type: string
+    type: object
+  api.ErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/api.ErrorDetail'
+    type: object
+  api.GamePlayerStatListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.GamePlayerStat'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.GamePlayerStatResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.GamePlayerStat'
+      meta: {}
+    type: object
+  api.ImportSummaryResponse:
+    properties:
+      data:
+        $ref: '#/definitions/service.ImportSummary'
+      meta: {}
+    type: object
+  api.MatchGameListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.MatchGame'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.MatchGameResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.MatchGame'
+      meta: {}
+    type: object
+  api.MatchListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Match'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.MatchResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.Match'
+      meta: {}
+    type: object
+  api.MatchResultsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.MatchResultView'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.PaginationMeta:
+    properties:
+      limit:
+        type: integer
+      offset:
+        type: integer
+      total:
+        type: integer
+    type: object
+  api.PlayerCareerResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.PlayerCareerStats'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.PlayerKDAData:
+    properties:
+      kda:
+        type: number
+      player_id:
+        type: integer
+    type: object
+  api.PlayerKDAResponse:
+    properties:
+      data:
+        $ref: '#/definitions/api.PlayerKDAData'
+      meta: {}
+    type: object
+  api.PlayerListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Player'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.PlayerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.Player'
+      meta: {}
+    type: object
+  api.SquadMemberListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.SquadMember'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.SquadMemberResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.SquadMember'
+      meta: {}
+    type: object
+  api.TeamListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Team'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.TeamProfileListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.TeamProfile'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.TeamProfileResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.TeamProfile'
+      meta: {}
+    type: object
+  api.TeamResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.Team'
+      meta: {}
+    type: object
+  api.TournamentListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.Tournament'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.TournamentRegistrationListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.TournamentRegistration'
+        type: array
+      meta:
+        $ref: '#/definitions/api.PaginationMeta'
+    type: object
+  api.TournamentRegistrationResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.TournamentRegistration'
+      meta: {}
+    type: object
+  api.TournamentResponse:
+    properties:
+      data:
+        $ref: '#/definitions/models.Tournament'
+      meta: {}
+    type: object
+  api.TournamentStandingsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/models.TournamentStanding'
+        type: array
+      meta: {}
+    type: object
   api.disciplineRequest:
     properties:
       code:
@@ -225,6 +453,25 @@ definitions:
     - name
     - start_date
     type: object
+  models.ActiveRosterView:
+    properties:
+      country_code:
+        type: string
+      join_date:
+        type: string
+      nickname:
+        type: string
+      player_id:
+        type: integer
+      role:
+        type: string
+      tag:
+        type: string
+      team_id:
+        type: integer
+      team_name:
+        type: string
+    type: object
   models.Discipline:
     properties:
       code:
@@ -319,6 +566,27 @@ definitions:
       winner_team_id:
         type: integer
     type: object
+  models.MatchResultView:
+    properties:
+      format:
+        type: string
+      games_played:
+        type: integer
+      match_id:
+        type: integer
+      stage:
+        type: string
+      start_time:
+        type: string
+      total_score_team1:
+        type: integer
+      total_score_team2:
+        type: integer
+      tournament_id:
+        type: integer
+      winner_team_id:
+        type: integer
+    type: object
   models.Player:
     properties:
       avatar_url:
@@ -341,6 +609,25 @@ definitions:
         type: string
       steam_id:
         type: string
+    type: object
+  models.PlayerCareerStats:
+    properties:
+      assists:
+        type: integer
+      damage:
+        type: integer
+      deaths:
+        type: integer
+      gold:
+        type: integer
+      kda:
+        type: number
+      kills:
+        type: integer
+      nickname:
+        type: string
+      player_id:
+        type: integer
     type: object
   models.SquadMember:
     properties:
@@ -443,6 +730,19 @@ definitions:
       tournament_id:
         type: integer
     type: object
+  models.TournamentStanding:
+    properties:
+      forfeits:
+        type: integer
+      losses:
+        type: integer
+      matches_played:
+        type: integer
+      team_id:
+        type: integer
+      wins:
+        type: integer
+    type: object
   service.DisciplineImportInput:
     properties:
       code:
@@ -482,6 +782,17 @@ definitions:
         type: integer
       was_mvp:
         type: boolean
+    type: object
+  service.ImportSummary:
+    properties:
+      errors:
+        items:
+          type: string
+        type: array
+      failed:
+        type: integer
+      inserted:
+        type: integer
     type: object
   service.MatchGameImportInput:
     properties:
@@ -660,20 +971,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import disciplines
       tags:
       - Utility
@@ -693,20 +999,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import disciplines from CSV
       tags:
       - Utility
@@ -729,20 +1030,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import game player stats
       tags:
       - Utility
@@ -762,20 +1058,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import game player stats from CSV
       tags:
       - Utility
@@ -798,20 +1089,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import match games
       tags:
       - Utility
@@ -831,20 +1117,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import match games from CSV
       tags:
       - Utility
@@ -867,20 +1148,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import matches
       tags:
       - Utility
@@ -900,20 +1176,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import matches from CSV
       tags:
       - Utility
@@ -936,20 +1207,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import players
       tags:
       - Utility
@@ -969,20 +1235,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import players from CSV
       tags:
       - Utility
@@ -1005,20 +1266,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import squad members
       tags:
       - Utility
@@ -1038,20 +1294,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import squad members from CSV
       tags:
       - Utility
@@ -1074,20 +1325,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import team profiles
       tags:
       - Utility
@@ -1107,20 +1353,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import team profiles from CSV
       tags:
       - Utility
@@ -1143,20 +1384,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import teams
       tags:
       - Utility
@@ -1176,20 +1412,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import teams from CSV
       tags:
       - Utility
@@ -1212,20 +1443,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import tournament registrations
       tags:
       - Utility
@@ -1245,20 +1471,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import tournament registrations from CSV
       tags:
       - Utility
@@ -1281,20 +1502,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import tournaments
       tags:
       - Utility
@@ -1314,20 +1530,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ImportSummaryResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Batch import tournaments from CSV
       tags:
       - Utility
@@ -1356,14 +1567,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.DisciplineListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List disciplines
       tags:
       - Disciplines
@@ -1383,13 +1591,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.Discipline'
+            $ref: '#/definitions/api.DisciplineResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create discipline
       tags:
       - Disciplines
@@ -1406,18 +1612,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete discipline
       tags:
       - Disciplines
@@ -1434,19 +1638,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Discipline'
+            $ref: '#/definitions/api.DisciplineResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get discipline
       tags:
       - Disciplines
@@ -1471,19 +1671,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Discipline'
+            $ref: '#/definitions/api.DisciplineResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update discipline
       tags:
       - Disciplines
@@ -1520,14 +1716,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.GamePlayerStatListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List game player stats
       tags:
       - GamePlayerStats
@@ -1547,13 +1740,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.GamePlayerStat'
+            $ref: '#/definitions/api.GamePlayerStatResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create game player stats
       tags:
       - GamePlayerStats
@@ -1570,18 +1761,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete game player stats
       tags:
       - GamePlayerStats
@@ -1598,19 +1787,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.GamePlayerStat'
+            $ref: '#/definitions/api.GamePlayerStatResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get game player stats
       tags:
       - GamePlayerStats
@@ -1635,19 +1820,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.GamePlayerStat'
+            $ref: '#/definitions/api.GamePlayerStatResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update game player stats
       tags:
       - GamePlayerStats
@@ -1676,14 +1857,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.MatchGameListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List match games
       tags:
       - MatchGames
@@ -1703,13 +1881,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.MatchGame'
+            $ref: '#/definitions/api.MatchGameResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create match game
       tags:
       - MatchGames
@@ -1726,18 +1902,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete match game
       tags:
       - MatchGames
@@ -1754,19 +1928,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.MatchGame'
+            $ref: '#/definitions/api.MatchGameResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get match game
       tags:
       - MatchGames
@@ -1791,19 +1961,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.MatchGame'
+            $ref: '#/definitions/api.MatchGameResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update match game
       tags:
       - MatchGames
@@ -1848,14 +2014,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.MatchListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List matches
       tags:
       - Matches
@@ -1875,13 +2038,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.Match'
+            $ref: '#/definitions/api.MatchResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create match
       tags:
       - Matches
@@ -1898,18 +2059,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete match
       tags:
       - Matches
@@ -1926,19 +2085,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Match'
+            $ref: '#/definitions/api.MatchResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get match
       tags:
       - Matches
@@ -1963,19 +2118,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Match'
+            $ref: '#/definitions/api.MatchResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update match
       tags:
       - Matches
@@ -2016,14 +2167,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.PlayerListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List players
       tags:
       - Players
@@ -2043,13 +2191,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.Player'
+            $ref: '#/definitions/api.PlayerResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create player
       tags:
       - Players
@@ -2066,18 +2212,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete player
       tags:
       - Players
@@ -2094,19 +2238,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Player'
+            $ref: '#/definitions/api.PlayerResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get player
       tags:
       - Players
@@ -2131,19 +2271,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Player'
+            $ref: '#/definitions/api.PlayerResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update player
       tags:
       - Players
@@ -2164,14 +2300,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.ActiveRostersResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Active roster report
       tags:
       - Utility
@@ -2196,14 +2329,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.MatchResultsResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Match results report
       tags:
       - Utility
@@ -2228,14 +2358,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.PlayerCareerResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Player career report
       tags:
       - Utility
@@ -2253,20 +2380,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.PlayerKDAResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Player KDA report
       tags:
       - Utility
@@ -2284,20 +2406,15 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.TournamentStandingsResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Tournament standings report
       tags:
       - Utility
@@ -2330,14 +2447,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.SquadMemberListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List squad members
       tags:
       - SquadMembers
@@ -2357,13 +2471,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.SquadMember'
+            $ref: '#/definitions/api.SquadMemberResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Add player to squad
       tags:
       - SquadMembers
@@ -2380,18 +2492,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Remove squad member
       tags:
       - SquadMembers
@@ -2408,19 +2518,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.SquadMember'
+            $ref: '#/definitions/api.SquadMemberResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get squad member
       tags:
       - SquadMembers
@@ -2445,19 +2551,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.SquadMember'
+            $ref: '#/definitions/api.SquadMemberResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update squad member
       tags:
       - SquadMembers
@@ -2482,14 +2584,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.TeamProfileListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List team profiles
       tags:
       - TeamProfiles
@@ -2509,13 +2608,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.TeamProfile'
+            $ref: '#/definitions/api.TeamProfileResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create team profile
       tags:
       - TeamProfiles
@@ -2532,18 +2629,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete team profile
       tags:
       - TeamProfiles
@@ -2560,19 +2655,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.TeamProfile'
+            $ref: '#/definitions/api.TeamProfileResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get team profile
       tags:
       - TeamProfiles
@@ -2597,19 +2688,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.TeamProfile'
+            $ref: '#/definitions/api.TeamProfileResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update team profile
       tags:
       - TeamProfiles
@@ -2646,14 +2733,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.TeamListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List teams
       tags:
       - Teams
@@ -2673,13 +2757,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.Team'
+            $ref: '#/definitions/api.TeamResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create team
       tags:
       - Teams
@@ -2696,18 +2778,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete team
       tags:
       - Teams
@@ -2724,19 +2804,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Team'
+            $ref: '#/definitions/api.TeamResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get team
       tags:
       - Teams
@@ -2761,19 +2837,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Team'
+            $ref: '#/definitions/api.TeamResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update team
       tags:
       - Teams
@@ -2806,14 +2878,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.TournamentRegistrationListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List tournament registrations
       tags:
       - TournamentRegistrations
@@ -2833,13 +2902,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.TournamentRegistration'
+            $ref: '#/definitions/api.TournamentRegistrationResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create tournament registration
       tags:
       - TournamentRegistrations
@@ -2856,18 +2923,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete tournament registration
       tags:
       - TournamentRegistrations
@@ -2884,19 +2949,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.TournamentRegistration'
+            $ref: '#/definitions/api.TournamentRegistrationResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get tournament registration
       tags:
       - TournamentRegistrations
@@ -2921,19 +2982,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.TournamentRegistration'
+            $ref: '#/definitions/api.TournamentRegistrationResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update tournament registration
       tags:
       - TournamentRegistrations
@@ -2974,14 +3031,11 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/api.TournamentListResponse'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: List tournaments
       tags:
       - Tournaments
@@ -3001,13 +3055,11 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/models.Tournament'
+            $ref: '#/definitions/api.TournamentResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Create tournament
       tags:
       - Tournaments
@@ -3024,18 +3076,16 @@ paths:
       responses:
         "204":
           description: No Content
+          schema:
+            $ref: '#/definitions/api.EmptyResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Delete tournament
       tags:
       - Tournaments
@@ -3052,19 +3102,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Tournament'
+            $ref: '#/definitions/api.TournamentResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Get tournament
       tags:
       - Tournaments
@@ -3089,19 +3135,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Tournament'
+            $ref: '#/definitions/api.TournamentResponse'
         "400":
           description: Bad Request
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/api.ErrorResponse'
       summary: Update tournament
       tags:
       - Tournaments

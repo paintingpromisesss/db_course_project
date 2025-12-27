@@ -59,8 +59,8 @@ func parseDateTimePtr(value *string) (*time.Time, error) {
 // @Accept json
 // @Produce json
 // @Param payload body matchGameRequest true "Match game payload"
-// @Success 201 {object} models.MatchGame
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} MatchGameResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /match-games [post]
 func (h *MatchGameHandler) Create(c *gin.Context) {
 	var req matchGameRequest
@@ -100,9 +100,9 @@ func (h *MatchGameHandler) Create(c *gin.Context) {
 // @Tags MatchGames
 // @Produce json
 // @Param id path int true "Match game ID"
-// @Success 200 {object} models.MatchGame
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} MatchGameResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /match-games/{id} [get]
 func (h *MatchGameHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -129,8 +129,8 @@ func (h *MatchGameHandler) Get(c *gin.Context) {
 // @Param winner_team_id query int false "Winner team ID"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} MatchGameListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /match-games [get]
 func (h *MatchGameHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -162,9 +162,9 @@ func (h *MatchGameHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Match game ID"
 // @Param payload body matchGameRequest true "Match game payload"
-// @Success 200 {object} models.MatchGame
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} MatchGameResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /match-games/{id} [put]
 func (h *MatchGameHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -214,9 +214,9 @@ func (h *MatchGameHandler) Update(c *gin.Context) {
 // @Tags MatchGames
 // @Produce json
 // @Param id path int true "Match game ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /match-games/{id} [delete]
 func (h *MatchGameHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

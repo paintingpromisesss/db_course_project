@@ -51,8 +51,8 @@ func parseDateTime(value string) (time.Time, error) {
 // @Accept json
 // @Produce json
 // @Param payload body matchRequest true "Match payload"
-// @Success 201 {object} models.Match
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} MatchResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /matches [post]
 func (h *MatchHandler) Create(c *gin.Context) {
 	var req matchRequest
@@ -96,9 +96,9 @@ func (h *MatchHandler) Create(c *gin.Context) {
 // @Tags Matches
 // @Produce json
 // @Param id path int true "Match ID"
-// @Success 200 {object} models.Match
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} MatchResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /matches/{id} [get]
 func (h *MatchHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -129,8 +129,8 @@ func (h *MatchHandler) Get(c *gin.Context) {
 // @Param to query string false "To datetime (RFC3339)"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} MatchListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /matches [get]
 func (h *MatchHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -183,9 +183,9 @@ func (h *MatchHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Match ID"
 // @Param payload body matchRequest true "Match payload"
-// @Success 200 {object} models.Match
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} MatchResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /matches/{id} [put]
 func (h *MatchHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -239,9 +239,9 @@ func (h *MatchHandler) Update(c *gin.Context) {
 // @Tags Matches
 // @Produce json
 // @Param id path int true "Match ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /matches/{id} [delete]
 func (h *MatchHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

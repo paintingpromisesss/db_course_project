@@ -43,8 +43,8 @@ type teamRequest struct {
 // @Accept json
 // @Produce json
 // @Param payload body teamRequest true "Team payload"
-// @Success 201 {object} models.Team
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} TeamResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /teams [post]
 func (h *TeamHandler) Create(c *gin.Context) {
 	var req teamRequest
@@ -78,9 +78,9 @@ func (h *TeamHandler) Create(c *gin.Context) {
 // @Tags Teams
 // @Produce json
 // @Param id path int true "Team ID"
-// @Success 200 {object} models.Team
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} TeamResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /teams/{id} [get]
 func (h *TeamHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -109,8 +109,8 @@ func (h *TeamHandler) Get(c *gin.Context) {
 // @Param is_verified query bool false "Verification flag"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} TeamListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /teams [get]
 func (h *TeamHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -149,9 +149,9 @@ func (h *TeamHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Team ID"
 // @Param payload body teamRequest true "Team payload"
-// @Success 200 {object} models.Team
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} TeamResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /teams/{id} [put]
 func (h *TeamHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -195,9 +195,9 @@ func (h *TeamHandler) Update(c *gin.Context) {
 // @Tags Teams
 // @Produce json
 // @Param id path int true "Team ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /teams/{id} [delete]
 func (h *TeamHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

@@ -46,8 +46,8 @@ type gamePlayerStatRequest struct {
 // @Accept json
 // @Produce json
 // @Param payload body gamePlayerStatRequest true "Game player stats payload"
-// @Success 201 {object} models.GamePlayerStat
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} GamePlayerStatResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /game-player-stats [post]
 func (h *GamePlayerStatHandler) Create(c *gin.Context) {
 	var req gamePlayerStatRequest
@@ -82,9 +82,9 @@ func (h *GamePlayerStatHandler) Create(c *gin.Context) {
 // @Tags GamePlayerStats
 // @Produce json
 // @Param id path int true "Stat ID"
-// @Success 200 {object} models.GamePlayerStat
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} GamePlayerStatResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /game-player-stats/{id} [get]
 func (h *GamePlayerStatHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -113,8 +113,8 @@ func (h *GamePlayerStatHandler) Get(c *gin.Context) {
 // @Param was_mvp query bool false "Filter by MVP"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} GamePlayerStatListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /game-player-stats [get]
 func (h *GamePlayerStatHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -163,9 +163,9 @@ func (h *GamePlayerStatHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Stat ID"
 // @Param payload body gamePlayerStatRequest true "Game player stats payload"
-// @Success 200 {object} models.GamePlayerStat
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} GamePlayerStatResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /game-player-stats/{id} [put]
 func (h *GamePlayerStatHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -210,9 +210,9 @@ func (h *GamePlayerStatHandler) Update(c *gin.Context) {
 // @Tags GamePlayerStats
 // @Produce json
 // @Param id path int true "Stat ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /game-player-stats/{id} [delete]
 func (h *GamePlayerStatHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

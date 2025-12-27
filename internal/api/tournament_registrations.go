@@ -44,8 +44,8 @@ type tournamentRegistrationRequest struct {
 // @Accept json
 // @Produce json
 // @Param payload body tournamentRegistrationRequest true "Registration payload"
-// @Success 201 {object} models.TournamentRegistration
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} TournamentRegistrationResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /tournament-registrations [post]
 func (h *TournamentRegistrationHandler) Create(c *gin.Context) {
 	var req tournamentRegistrationRequest
@@ -77,9 +77,9 @@ func (h *TournamentRegistrationHandler) Create(c *gin.Context) {
 // @Tags TournamentRegistrations
 // @Produce json
 // @Param id path int true "Registration ID"
-// @Success 200 {object} models.TournamentRegistration
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} TournamentRegistrationResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /tournament-registrations/{id} [get]
 func (h *TournamentRegistrationHandler) Get(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -107,8 +107,8 @@ func (h *TournamentRegistrationHandler) Get(c *gin.Context) {
 // @Param status query string false "Status"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} TournamentRegistrationListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /tournament-registrations [get]
 func (h *TournamentRegistrationHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -146,9 +146,9 @@ func (h *TournamentRegistrationHandler) List(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Registration ID"
 // @Param payload body tournamentRegistrationRequest true "Registration payload"
-// @Success 200 {object} models.TournamentRegistration
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} TournamentRegistrationResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /tournament-registrations/{id} [put]
 func (h *TournamentRegistrationHandler) Update(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
@@ -190,9 +190,9 @@ func (h *TournamentRegistrationHandler) Update(c *gin.Context) {
 // @Tags TournamentRegistrations
 // @Produce json
 // @Param id path int true "Registration ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /tournament-registrations/{id} [delete]
 func (h *TournamentRegistrationHandler) Delete(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)

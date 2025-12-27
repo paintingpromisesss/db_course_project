@@ -65,9 +65,9 @@ func bindCSV[T any](c *gin.Context, field string, out *[]T) error {
 // @Accept json
 // @Produce json
 // @Param payload body []service.PlayerImportInput true "Players to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/players [post]
 func (h *UtilityHandler) BatchImportPlayers(c *gin.Context) {
 	var payload []service.PlayerImportInput
@@ -88,9 +88,9 @@ func (h *UtilityHandler) BatchImportPlayers(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/players/csv [post]
 func (h *UtilityHandler) BatchImportPlayersCSV(c *gin.Context) {
 	var payload []service.PlayerImportInput
@@ -111,9 +111,9 @@ func (h *UtilityHandler) BatchImportPlayersCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.DisciplineImportInput true "Disciplines to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/disciplines [post]
 func (h *UtilityHandler) BatchImportDisciplines(c *gin.Context) {
 	var payload []service.DisciplineImportInput
@@ -134,9 +134,9 @@ func (h *UtilityHandler) BatchImportDisciplines(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/disciplines/csv [post]
 func (h *UtilityHandler) BatchImportDisciplinesCSV(c *gin.Context) {
 	var payload []service.DisciplineImportInput
@@ -157,9 +157,9 @@ func (h *UtilityHandler) BatchImportDisciplinesCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.TeamImportInput true "Teams to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/teams [post]
 func (h *UtilityHandler) BatchImportTeams(c *gin.Context) {
 	var payload []service.TeamImportInput
@@ -180,9 +180,9 @@ func (h *UtilityHandler) BatchImportTeams(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/teams/csv [post]
 func (h *UtilityHandler) BatchImportTeamsCSV(c *gin.Context) {
 	var payload []service.TeamImportInput
@@ -203,9 +203,9 @@ func (h *UtilityHandler) BatchImportTeamsCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.TournamentImportInput true "Tournaments to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/tournaments [post]
 func (h *UtilityHandler) BatchImportTournaments(c *gin.Context) {
 	var payload []service.TournamentImportInput
@@ -226,9 +226,9 @@ func (h *UtilityHandler) BatchImportTournaments(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/tournaments/csv [post]
 func (h *UtilityHandler) BatchImportTournamentsCSV(c *gin.Context) {
 	var payload []service.TournamentImportInput
@@ -249,9 +249,9 @@ func (h *UtilityHandler) BatchImportTournamentsCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.TournamentRegistrationImportInput true "Registrations to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/tournament-registrations [post]
 func (h *UtilityHandler) BatchImportTournamentRegistrations(c *gin.Context) {
 	var payload []service.TournamentRegistrationImportInput
@@ -272,9 +272,9 @@ func (h *UtilityHandler) BatchImportTournamentRegistrations(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/tournament-registrations/csv [post]
 func (h *UtilityHandler) BatchImportTournamentRegistrationsCSV(c *gin.Context) {
 	var payload []service.TournamentRegistrationImportInput
@@ -295,9 +295,9 @@ func (h *UtilityHandler) BatchImportTournamentRegistrationsCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.MatchImportInput true "Matches to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/matches [post]
 func (h *UtilityHandler) BatchImportMatches(c *gin.Context) {
 	var payload []service.MatchImportInput
@@ -318,9 +318,9 @@ func (h *UtilityHandler) BatchImportMatches(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/matches/csv [post]
 func (h *UtilityHandler) BatchImportMatchesCSV(c *gin.Context) {
 	var payload []service.MatchImportInput
@@ -341,9 +341,9 @@ func (h *UtilityHandler) BatchImportMatchesCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.MatchGameImportInput true "Match games to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/match-games [post]
 func (h *UtilityHandler) BatchImportMatchGames(c *gin.Context) {
 	var payload []service.MatchGameImportInput
@@ -364,9 +364,9 @@ func (h *UtilityHandler) BatchImportMatchGames(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/match-games/csv [post]
 func (h *UtilityHandler) BatchImportMatchGamesCSV(c *gin.Context) {
 	var payload []service.MatchGameImportInput
@@ -387,9 +387,9 @@ func (h *UtilityHandler) BatchImportMatchGamesCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.GamePlayerStatImportInput true "Game player stats to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/game-player-stats [post]
 func (h *UtilityHandler) BatchImportGamePlayerStats(c *gin.Context) {
 	var payload []service.GamePlayerStatImportInput
@@ -410,9 +410,9 @@ func (h *UtilityHandler) BatchImportGamePlayerStats(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/game-player-stats/csv [post]
 func (h *UtilityHandler) BatchImportGamePlayerStatsCSV(c *gin.Context) {
 	var payload []service.GamePlayerStatImportInput
@@ -433,9 +433,9 @@ func (h *UtilityHandler) BatchImportGamePlayerStatsCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.SquadMemberImportInput true "Squad members to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/squad-members [post]
 func (h *UtilityHandler) BatchImportSquadMembers(c *gin.Context) {
 	var payload []service.SquadMemberImportInput
@@ -456,9 +456,9 @@ func (h *UtilityHandler) BatchImportSquadMembers(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/squad-members/csv [post]
 func (h *UtilityHandler) BatchImportSquadMembersCSV(c *gin.Context) {
 	var payload []service.SquadMemberImportInput
@@ -479,9 +479,9 @@ func (h *UtilityHandler) BatchImportSquadMembersCSV(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param payload body []service.TeamProfileImportInput true "Team profiles to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/team-profiles [post]
 func (h *UtilityHandler) BatchImportTeamProfiles(c *gin.Context) {
 	var payload []service.TeamProfileImportInput
@@ -502,9 +502,9 @@ func (h *UtilityHandler) BatchImportTeamProfiles(c *gin.Context) {
 // @Accept mpfd
 // @Produce json
 // @Param file formData file true "CSV file"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ImportSummaryResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /batch-import/team-profiles/csv [post]
 func (h *UtilityHandler) BatchImportTeamProfilesCSV(c *gin.Context) {
 	var payload []service.TeamProfileImportInput
@@ -525,8 +525,8 @@ func (h *UtilityHandler) BatchImportTeamProfilesCSV(c *gin.Context) {
 // @Produce json
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} ActiveRostersResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /reports/active-rosters [get]
 func (h *UtilityHandler) ActiveRosters(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -545,8 +545,8 @@ func (h *UtilityHandler) ActiveRosters(c *gin.Context) {
 // @Param tournament_id query int false "Tournament ID"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} MatchResultsResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /reports/match-results [get]
 func (h *UtilityHandler) MatchResults(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -571,8 +571,8 @@ func (h *UtilityHandler) MatchResults(c *gin.Context) {
 // @Param search query string false "Search by nickname"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} PlayerCareerResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /reports/player-career [get]
 func (h *UtilityHandler) PlayerCareer(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -590,9 +590,9 @@ func (h *UtilityHandler) PlayerCareer(c *gin.Context) {
 // @Tags Utility
 // @Produce json
 // @Param tournament_id query int true "Tournament ID"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} TournamentStandingsResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /reports/tournament-standings [get]
 func (h *UtilityHandler) TournamentStandings(c *gin.Context) {
 	val := c.Query("tournament_id")
@@ -617,9 +617,9 @@ func (h *UtilityHandler) TournamentStandings(c *gin.Context) {
 // @Tags Utility
 // @Produce json
 // @Param player_id query int true "Player ID"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} PlayerKDAResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /reports/player-kda [get]
 func (h *UtilityHandler) PlayerKDA(c *gin.Context) {
 	val := c.Query("player_id")

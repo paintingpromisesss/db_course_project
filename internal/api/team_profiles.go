@@ -42,8 +42,8 @@ type teamProfileRequest struct {
 // @Accept json
 // @Produce json
 // @Param payload body teamProfileRequest true "Team profile payload"
-// @Success 201 {object} models.TeamProfile
-// @Failure 400 {object} map[string]string
+// @Success 201 {object} TeamProfileResponse
+// @Failure 400 {object} ErrorResponse
 // @Router /team-profiles [post]
 func (h *TeamProfileHandler) Create(c *gin.Context) {
 	var req teamProfileRequest
@@ -70,9 +70,9 @@ func (h *TeamProfileHandler) Create(c *gin.Context) {
 // @Tags TeamProfiles
 // @Produce json
 // @Param team_id path int true "Team ID"
-// @Success 200 {object} models.TeamProfile
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} TeamProfileResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /team-profiles/{team_id} [get]
 func (h *TeamProfileHandler) Get(c *gin.Context) {
 	teamID, err := strconv.ParseInt(c.Param("team_id"), 10, 64)
@@ -98,8 +98,8 @@ func (h *TeamProfileHandler) Get(c *gin.Context) {
 // @Param team_id query int false "Team ID"
 // @Param limit query int false "Page size"
 // @Param offset query int false "Offset"
-// @Success 200 {object} map[string]interface{}
-// @Failure 500 {object} map[string]string
+// @Success 200 {object} TeamProfileListResponse
+// @Failure 500 {object} ErrorResponse
 // @Router /team-profiles [get]
 func (h *TeamProfileHandler) List(c *gin.Context) {
 	limit, offset := ParsePagination(c)
@@ -125,9 +125,9 @@ func (h *TeamProfileHandler) List(c *gin.Context) {
 // @Produce json
 // @Param team_id path int true "Team ID"
 // @Param payload body teamProfileRequest true "Team profile payload"
-// @Success 200 {object} models.TeamProfile
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 200 {object} TeamProfileResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /team-profiles/{team_id} [put]
 func (h *TeamProfileHandler) Update(c *gin.Context) {
 	teamID, err := strconv.ParseInt(c.Param("team_id"), 10, 64)
@@ -163,9 +163,9 @@ func (h *TeamProfileHandler) Update(c *gin.Context) {
 // @Tags TeamProfiles
 // @Produce json
 // @Param team_id path int true "Team ID"
-// @Success 204 {object} nil
-// @Failure 400 {object} map[string]string
-// @Failure 404 {object} map[string]string
+// @Success 204 {object} EmptyResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
 // @Router /team-profiles/{team_id} [delete]
 func (h *TeamProfileHandler) Delete(c *gin.Context) {
 	teamID, err := strconv.ParseInt(c.Param("team_id"), 10, 64)
