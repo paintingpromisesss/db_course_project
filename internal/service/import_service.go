@@ -12,114 +12,114 @@ import (
 )
 
 type PlayerImportInput struct {
-	Nickname    string  `json:"nickname"`
-	RealName    string  `json:"real_name"`
-	CountryCode string  `json:"country_code"`
-	BirthDate   string  `json:"birth_date"`
-	SteamID     string  `json:"steam_id"`
-	AvatarURL   string  `json:"avatar_url"`
-	MMR         float64 `json:"mmr_rating"`
-	IsRetired   *bool   `json:"is_retired"`
+	Nickname    string  `json:"nickname" csv:"nickname"`
+	RealName    string  `json:"real_name" csv:"real_name"`
+	CountryCode string  `json:"country_code" csv:"country_code"`
+	BirthDate   string  `json:"birth_date" csv:"birth_date"`
+	SteamID     string  `json:"steam_id" csv:"steam_id"`
+	AvatarURL   string  `json:"avatar_url" csv:"avatar_url"`
+	MMR         float64 `json:"mmr_rating" csv:"mmr_rating"`
+	IsRetired   *bool   `json:"is_retired" csv:"is_retired"`
 }
 
 type DisciplineImportInput struct {
-	Code        string          `json:"code"`
-	Name        string          `json:"name"`
-	Description string          `json:"description"`
-	IconURL     *string         `json:"icon_url"`
-	TeamSize    *int            `json:"team_size"`
-	Metadata    json.RawMessage `json:"metadata" swaggertype:"object"`
-	IsActive    *bool           `json:"is_active"`
+	Code        string          `json:"code" csv:"code"`
+	Name        string          `json:"name" csv:"name"`
+	Description string          `json:"description" csv:"description"`
+	IconURL     *string         `json:"icon_url" csv:"icon_url"`
+	TeamSize    *int            `json:"team_size" csv:"team_size"`
+	Metadata    json.RawMessage `json:"metadata" swaggertype:"object" csv:"metadata"`
+	IsActive    *bool           `json:"is_active" csv:"is_active"`
 }
 
 type TeamImportInput struct {
-	Name         string   `json:"name"`
-	Tag          string   `json:"tag"`
-	CountryCode  string   `json:"country_code"`
-	DisciplineID int64    `json:"discipline_id"`
-	LogoURL      *string  `json:"logo_url"`
-	WorldRanking *float64 `json:"world_ranking"`
-	IsVerified   *bool    `json:"is_verified"`
+	Name         string   `json:"name" csv:"name"`
+	Tag          string   `json:"tag" csv:"tag"`
+	CountryCode  string   `json:"country_code" csv:"country_code"`
+	DisciplineID int64    `json:"discipline_id" csv:"discipline_id"`
+	LogoURL      *string  `json:"logo_url" csv:"logo_url"`
+	WorldRanking *float64 `json:"world_ranking" csv:"world_ranking"`
+	IsVerified   *bool    `json:"is_verified" csv:"is_verified"`
 }
 
 type TournamentImportInput struct {
-	DisciplineID  int64           `json:"discipline_id"`
-	Name          string          `json:"name"`
-	StartDate     string          `json:"start_date"`
-	EndDate       string          `json:"end_date"`
-	PrizePool     float64         `json:"prize_pool"`
-	Currency      string          `json:"currency"`
-	Status        string          `json:"status"`
-	IsOnline      *bool           `json:"is_online"`
-	BracketConfig json.RawMessage `json:"bracket_config" swaggertype:"object"`
+	DisciplineID  int64           `json:"discipline_id" csv:"discipline_id"`
+	Name          string          `json:"name" csv:"name"`
+	StartDate     string          `json:"start_date" csv:"start_date"`
+	EndDate       string          `json:"end_date" csv:"end_date"`
+	PrizePool     float64         `json:"prize_pool" csv:"prize_pool"`
+	Currency      string          `json:"currency" csv:"currency"`
+	Status        string          `json:"status" csv:"status"`
+	IsOnline      *bool           `json:"is_online" csv:"is_online"`
+	BracketConfig json.RawMessage `json:"bracket_config" swaggertype:"object" csv:"bracket_config"`
 }
 
 type TournamentRegistrationImportInput struct {
-	TournamentID   int64           `json:"tournament_id"`
-	TeamID         int64           `json:"team_id"`
-	SeedNumber     *int            `json:"seed_number"`
-	Status         string          `json:"status"`
-	ManagerContact *string         `json:"manager_contact"`
-	RosterSnapshot json.RawMessage `json:"roster_snapshot" swaggertype:"object"`
-	IsInvited      *bool           `json:"is_invited"`
+	TournamentID   int64           `json:"tournament_id" csv:"tournament_id"`
+	TeamID         int64           `json:"team_id" csv:"team_id"`
+	SeedNumber     *int            `json:"seed_number" csv:"seed_number"`
+	Status         string          `json:"status" csv:"status"`
+	ManagerContact *string         `json:"manager_contact" csv:"manager_contact"`
+	RosterSnapshot json.RawMessage `json:"roster_snapshot" swaggertype:"object" csv:"roster_snapshot"`
+	IsInvited      *bool           `json:"is_invited" csv:"is_invited"`
 }
 
 type MatchImportInput struct {
-	TournamentID int64           `json:"tournament_id"`
-	Team1ID      *int64          `json:"team1_id"`
-	Team2ID      *int64          `json:"team2_id"`
-	StartTime    string          `json:"start_time"`
-	Format       string          `json:"format"`
-	Stage        *string         `json:"stage"`
-	WinnerTeamID *int64          `json:"winner_team_id"`
-	IsForfeit    *bool           `json:"is_forfeit"`
-	MatchNotes   json.RawMessage `json:"match_notes" swaggertype:"object"`
+	TournamentID int64           `json:"tournament_id" csv:"tournament_id"`
+	Team1ID      *int64          `json:"team1_id" csv:"team1_id"`
+	Team2ID      *int64          `json:"team2_id" csv:"team2_id"`
+	StartTime    string          `json:"start_time" csv:"start_time"`
+	Format       string          `json:"format" csv:"format"`
+	Stage        *string         `json:"stage" csv:"stage"`
+	WinnerTeamID *int64          `json:"winner_team_id" csv:"winner_team_id"`
+	IsForfeit    *bool           `json:"is_forfeit" csv:"is_forfeit"`
+	MatchNotes   json.RawMessage `json:"match_notes" swaggertype:"object" csv:"match_notes"`
 }
 
 type MatchGameImportInput struct {
-	MatchID           int64           `json:"match_id"`
-	MapName           string          `json:"map_name"`
-	GameNumber        int             `json:"game_number"`
-	DurationSeconds   *int            `json:"duration_seconds"`
-	WinnerTeamID      *int64          `json:"winner_team_id"`
-	ScoreTeam1        *int            `json:"score_team1"`
-	ScoreTeam2        *int            `json:"score_team2"`
-	StartedAt         *string         `json:"started_at"`
-	HadTechnicalPause *bool           `json:"had_technical_pause"`
-	PickBanPhase      json.RawMessage `json:"pick_ban_phase" swaggertype:"object"`
+	MatchID           int64           `json:"match_id" csv:"match_id"`
+	MapName           string          `json:"map_name" csv:"map_name"`
+	GameNumber        int             `json:"game_number" csv:"game_number"`
+	DurationSeconds   *int            `json:"duration_seconds" csv:"duration_seconds"`
+	WinnerTeamID      *int64          `json:"winner_team_id" csv:"winner_team_id"`
+	ScoreTeam1        *int            `json:"score_team1" csv:"score_team1"`
+	ScoreTeam2        *int            `json:"score_team2" csv:"score_team2"`
+	StartedAt         *string         `json:"started_at" csv:"started_at"`
+	HadTechnicalPause *bool           `json:"had_technical_pause" csv:"had_technical_pause"`
+	PickBanPhase      json.RawMessage `json:"pick_ban_phase" swaggertype:"object" csv:"pick_ban_phase"`
 }
 
 type GamePlayerStatImportInput struct {
-	GameID      int64   `json:"game_id"`
-	PlayerID    int64   `json:"player_id"`
-	TeamID      *int64  `json:"team_id"`
-	Kills       int     `json:"kills"`
-	Deaths      int     `json:"deaths"`
-	Assists     int     `json:"assists"`
-	HeroName    *string `json:"hero_name"`
-	DamageDealt int     `json:"damage_dealt"`
-	GoldEarned  int     `json:"gold_earned"`
-	WasMVP      *bool   `json:"was_mvp"`
+	GameID      int64   `json:"game_id" csv:"game_id"`
+	PlayerID    int64   `json:"player_id" csv:"player_id"`
+	TeamID      *int64  `json:"team_id" csv:"team_id"`
+	Kills       int     `json:"kills" csv:"kills"`
+	Deaths      int     `json:"deaths" csv:"deaths"`
+	Assists     int     `json:"assists" csv:"assists"`
+	HeroName    *string `json:"hero_name" csv:"hero_name"`
+	DamageDealt int     `json:"damage_dealt" csv:"damage_dealt"`
+	GoldEarned  int     `json:"gold_earned" csv:"gold_earned"`
+	WasMVP      *bool   `json:"was_mvp" csv:"was_mvp"`
 }
 
 type SquadMemberImportInput struct {
-	TeamID          int64    `json:"team_id"`
-	PlayerID        int64    `json:"player_id"`
-	Role            string   `json:"role"`
-	IsStandin       *bool    `json:"is_standin"`
-	JoinDate        *string  `json:"join_date"`
-	ContractEndDate *string  `json:"contract_end_date"`
-	LeaveDate       *string  `json:"leave_date"`
-	SalaryMonthly   *float64 `json:"salary_monthly"`
+	TeamID          int64    `json:"team_id" csv:"team_id"`
+	PlayerID        int64    `json:"player_id" csv:"player_id"`
+	Role            string   `json:"role" csv:"role"`
+	IsStandin       *bool    `json:"is_standin" csv:"is_standin"`
+	JoinDate        *string  `json:"join_date" csv:"join_date"`
+	ContractEndDate *string  `json:"contract_end_date" csv:"contract_end_date"`
+	LeaveDate       *string  `json:"leave_date" csv:"leave_date"`
+	SalaryMonthly   *float64 `json:"salary_monthly" csv:"salary_monthly"`
 }
 
 type TeamProfileImportInput struct {
-	TeamID       int64   `json:"team_id"`
-	CoachName    *string `json:"coach_name"`
-	SponsorInfo  *string `json:"sponsor_info"`
-	Headquarters *string `json:"headquarters"`
-	Website      *string `json:"website"`
-	ContactEmail *string `json:"contact_email"`
+	TeamID       int64   `json:"team_id" csv:"team_id"`
+	CoachName    *string `json:"coach_name" csv:"coach_name"`
+	SponsorInfo  *string `json:"sponsor_info" csv:"sponsor_info"`
+	Headquarters *string `json:"headquarters" csv:"headquarters"`
+	Website      *string `json:"website" csv:"website"`
+	ContactEmail *string `json:"contact_email" csv:"contact_email"`
 }
 
 type ImportSummary struct {

@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gocarina/gocsv"
 
 	"db_course_project/internal/service"
 )
@@ -19,17 +20,26 @@ func NewUtilityHandler(reports *service.ReportService, importer *service.ImportS
 }
 
 func (h *UtilityHandler) Register(rg *gin.RouterGroup) {
-	rg.POST("/batch-import", h.BatchImport)
 	rg.POST("/batch-import/players", h.BatchImportPlayers)
+	rg.POST("/batch-import/players/csv", h.BatchImportPlayersCSV)
 	rg.POST("/batch-import/disciplines", h.BatchImportDisciplines)
+	rg.POST("/batch-import/disciplines/csv", h.BatchImportDisciplinesCSV)
 	rg.POST("/batch-import/teams", h.BatchImportTeams)
+	rg.POST("/batch-import/teams/csv", h.BatchImportTeamsCSV)
 	rg.POST("/batch-import/tournaments", h.BatchImportTournaments)
+	rg.POST("/batch-import/tournaments/csv", h.BatchImportTournamentsCSV)
 	rg.POST("/batch-import/tournament-registrations", h.BatchImportTournamentRegistrations)
+	rg.POST("/batch-import/tournament-registrations/csv", h.BatchImportTournamentRegistrationsCSV)
 	rg.POST("/batch-import/matches", h.BatchImportMatches)
+	rg.POST("/batch-import/matches/csv", h.BatchImportMatchesCSV)
 	rg.POST("/batch-import/match-games", h.BatchImportMatchGames)
+	rg.POST("/batch-import/match-games/csv", h.BatchImportMatchGamesCSV)
 	rg.POST("/batch-import/game-player-stats", h.BatchImportGamePlayerStats)
+	rg.POST("/batch-import/game-player-stats/csv", h.BatchImportGamePlayerStatsCSV)
 	rg.POST("/batch-import/squad-members", h.BatchImportSquadMembers)
+	rg.POST("/batch-import/squad-members/csv", h.BatchImportSquadMembersCSV)
 	rg.POST("/batch-import/team-profiles", h.BatchImportTeamProfiles)
+	rg.POST("/batch-import/team-profiles/csv", h.BatchImportTeamProfilesCSV)
 	rg.GET("/reports/active-rosters", h.ActiveRosters)
 	rg.GET("/reports/match-results", h.MatchResults)
 	rg.GET("/reports/player-career", h.PlayerCareer)
@@ -37,27 +47,17 @@ func (h *UtilityHandler) Register(rg *gin.RouterGroup) {
 	rg.GET("/reports/player-kda", h.PlayerKDA)
 }
 
-// @Summary Batch import players
-// @Tags Utility
-// @Accept json
-// @Produce json
-// @Param payload body []service.PlayerImportInput true "Players to import"
-// @Success 200 {object} map[string]interface{}
-// @Failure 400 {object} map[string]string
-// @Failure 500 {object} map[string]string
-// @Router /batch-import [post]
-func (h *UtilityHandler) BatchImport(c *gin.Context) {
-	var payload []service.PlayerImportInput
-	if err := c.ShouldBindJSON(&payload); err != nil {
-		RespondError(c, http.StatusBadRequest, err.Error())
-		return
-	}
-	summary, err := h.importer.ImportPlayers(c.Request.Context(), "players_api", payload)
+func bindCSV[T any](c *gin.Context, field string, out *[]T) error {
+	fileHeader, err := c.FormFile(field)
 	if err != nil {
-		RespondError(c, http.StatusInternalServerError, err.Error())
-		return
+		return err
 	}
-	RespondData(c, http.StatusOK, summary, nil)
+	file, err := fileHeader.Open()
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	return gocsv.Unmarshal(file, out)
 }
 
 // @Summary Batch import players
@@ -76,6 +76,29 @@ func (h *UtilityHandler) BatchImportPlayers(c *gin.Context) {
 		return
 	}
 	summary, err := h.importer.ImportPlayers(c.Request.Context(), "players_api", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
+// @Summary Batch import players from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/players/csv [post]
+func (h *UtilityHandler) BatchImportPlayersCSV(c *gin.Context) {
+	var payload []service.PlayerImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportPlayers(c.Request.Context(), "players_csv", payload)
 	if err != nil {
 		RespondError(c, http.StatusInternalServerError, err.Error())
 		return
@@ -106,6 +129,29 @@ func (h *UtilityHandler) BatchImportDisciplines(c *gin.Context) {
 	RespondData(c, http.StatusOK, summary, nil)
 }
 
+// @Summary Batch import disciplines from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/disciplines/csv [post]
+func (h *UtilityHandler) BatchImportDisciplinesCSV(c *gin.Context) {
+	var payload []service.DisciplineImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportDisciplines(c.Request.Context(), "disciplines_csv", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
 // @Summary Batch import teams
 // @Tags Utility
 // @Accept json
@@ -122,6 +168,29 @@ func (h *UtilityHandler) BatchImportTeams(c *gin.Context) {
 		return
 	}
 	summary, err := h.importer.ImportTeams(c.Request.Context(), "teams_api", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
+// @Summary Batch import teams from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/teams/csv [post]
+func (h *UtilityHandler) BatchImportTeamsCSV(c *gin.Context) {
+	var payload []service.TeamImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportTeams(c.Request.Context(), "teams_csv", payload)
 	if err != nil {
 		RespondError(c, http.StatusInternalServerError, err.Error())
 		return
@@ -152,6 +221,29 @@ func (h *UtilityHandler) BatchImportTournaments(c *gin.Context) {
 	RespondData(c, http.StatusOK, summary, nil)
 }
 
+// @Summary Batch import tournaments from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/tournaments/csv [post]
+func (h *UtilityHandler) BatchImportTournamentsCSV(c *gin.Context) {
+	var payload []service.TournamentImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportTournaments(c.Request.Context(), "tournaments_csv", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
 // @Summary Batch import tournament registrations
 // @Tags Utility
 // @Accept json
@@ -168,6 +260,29 @@ func (h *UtilityHandler) BatchImportTournamentRegistrations(c *gin.Context) {
 		return
 	}
 	summary, err := h.importer.ImportTournamentRegistrations(c.Request.Context(), "tournament_registrations_api", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
+// @Summary Batch import tournament registrations from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/tournament-registrations/csv [post]
+func (h *UtilityHandler) BatchImportTournamentRegistrationsCSV(c *gin.Context) {
+	var payload []service.TournamentRegistrationImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportTournamentRegistrations(c.Request.Context(), "tournament_registrations_csv", payload)
 	if err != nil {
 		RespondError(c, http.StatusInternalServerError, err.Error())
 		return
@@ -198,6 +313,29 @@ func (h *UtilityHandler) BatchImportMatches(c *gin.Context) {
 	RespondData(c, http.StatusOK, summary, nil)
 }
 
+// @Summary Batch import matches from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/matches/csv [post]
+func (h *UtilityHandler) BatchImportMatchesCSV(c *gin.Context) {
+	var payload []service.MatchImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportMatches(c.Request.Context(), "matches_csv", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
 // @Summary Batch import match games
 // @Tags Utility
 // @Accept json
@@ -214,6 +352,29 @@ func (h *UtilityHandler) BatchImportMatchGames(c *gin.Context) {
 		return
 	}
 	summary, err := h.importer.ImportMatchGames(c.Request.Context(), "match_games_api", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
+// @Summary Batch import match games from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/match-games/csv [post]
+func (h *UtilityHandler) BatchImportMatchGamesCSV(c *gin.Context) {
+	var payload []service.MatchGameImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportMatchGames(c.Request.Context(), "match_games_csv", payload)
 	if err != nil {
 		RespondError(c, http.StatusInternalServerError, err.Error())
 		return
@@ -244,6 +405,29 @@ func (h *UtilityHandler) BatchImportGamePlayerStats(c *gin.Context) {
 	RespondData(c, http.StatusOK, summary, nil)
 }
 
+// @Summary Batch import game player stats from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/game-player-stats/csv [post]
+func (h *UtilityHandler) BatchImportGamePlayerStatsCSV(c *gin.Context) {
+	var payload []service.GamePlayerStatImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportGamePlayerStats(c.Request.Context(), "game_player_stats_csv", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
 // @Summary Batch import squad members
 // @Tags Utility
 // @Accept json
@@ -267,6 +451,29 @@ func (h *UtilityHandler) BatchImportSquadMembers(c *gin.Context) {
 	RespondData(c, http.StatusOK, summary, nil)
 }
 
+// @Summary Batch import squad members from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/squad-members/csv [post]
+func (h *UtilityHandler) BatchImportSquadMembersCSV(c *gin.Context) {
+	var payload []service.SquadMemberImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportSquadMembers(c.Request.Context(), "squad_members_csv", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
 // @Summary Batch import team profiles
 // @Tags Utility
 // @Accept json
@@ -283,6 +490,29 @@ func (h *UtilityHandler) BatchImportTeamProfiles(c *gin.Context) {
 		return
 	}
 	summary, err := h.importer.ImportTeamProfiles(c.Request.Context(), "team_profiles_api", payload)
+	if err != nil {
+		RespondError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	RespondData(c, http.StatusOK, summary, nil)
+}
+
+// @Summary Batch import team profiles from CSV
+// @Tags Utility
+// @Accept mpfd
+// @Produce json
+// @Param file formData file true "CSV file"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /batch-import/team-profiles/csv [post]
+func (h *UtilityHandler) BatchImportTeamProfilesCSV(c *gin.Context) {
+	var payload []service.TeamProfileImportInput
+	if err := bindCSV(c, "file", &payload); err != nil {
+		RespondError(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	summary, err := h.importer.ImportTeamProfiles(c.Request.Context(), "team_profiles_csv", payload)
 	if err != nil {
 		RespondError(c, http.StatusInternalServerError, err.Error())
 		return
